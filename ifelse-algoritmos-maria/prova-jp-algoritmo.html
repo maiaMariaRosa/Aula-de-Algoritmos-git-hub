@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correção Prova</title>
+</head>
+<body>
+    Quantidade de energia<br><br>
+    <input type="text" id="input_qtEnergia"><br><br>
+    Bandeira tarifaria <br><br>
+    <input type="text" id="input_bandeira"><br><br>
+    Quantidade MB <br><br>
+    <input type="text" id="input_qtMB"> <br><br>
+
+    <button onclick="calcular()">Calcular Despesas</button> <br> <br>
+
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function calcular() {
+    var kwh = Number(input_qtEnergia.value)
+    var bandeira = Number(input_bandeira.value)
+    var mb = Number(input_qtMB.value)
+
+    var verde = kwh * 0.75;
+    var vermelha =  kwh * 1.15;
+
+    var energiaBase = 0;
+
+    if (bandeira == 'verde') {
+        energiaBase = verde;
+
+    }
+    if (bandeira == 'vermelha') {
+        energiaBase = vermelha;
+    }
+
+    var internetBase = mb
+
+    if (mb <=200 ) {
+        internetBase += 40;
+    } else {
+        internetBase -= 40;
+    }
+    var total = energiaBase + internetBase;
+
+    var percentualEnergia = energiaBase * total / 100;
+    var percentualInternet = internetBase / total * 100;
+
+    div_mensagem.innerHTML = `Gasto total de despesas mensal = R$ ${total}
+    Com o consumo de  ${kwh} Kwh na bandeira ${bandeira}`
+    }
+
+</script>

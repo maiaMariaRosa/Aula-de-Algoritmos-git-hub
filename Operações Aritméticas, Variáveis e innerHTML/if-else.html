@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Digite um numero:
+    <input id="input_numero1" type="text"></input>
+
+    <button onclick="verificar()">verificar</button>
+
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function verificar() {
+        var num = Number(input_numero1.value)
+        div_mensagem.innerHTML = `Número inserido: ${num} ! <br>`
+
+        if (num >50) {
+            div_mensagem.innerHTML += `O número ${num} é maior que 50`
+
+            if (num <50) {
+            div_mensagem.innerHTML -= `O número ${num} é menor que 50`
+        }
+
+    }
+
+
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex_1 - Calculadora básica</title>
+</head>
+<body>
+
+    <h3>Calculadora</h3><br>
+    Primeiro número:
+    <input type='text' id="input_n1"> <br>
+    
+    Segundo número:
+    <input type='text' id="input_n2"> <br>
+
+    <button onclick="multiplicar()"><b>Multiplicar</b></button>
+    <button onclick="dividir()"><b>Dividir</b></button>
+    <button onclick="subtrair()"><b>Subtrair</b></button>
+    <button onclick="somar()"><b>Somar</b></button> <br>
+    <button onclick="verQuociente()">Ver Quociente</button>
+
+<div id="div_mensagem">Mensagem inicial</div>
+</body>
+</html>
+<script>
+    function multiplicar () {
+    div_mensagem.innerHTML = `A multiplicação entre ${input_n1.value} e ${input_n2.value} é ${input_n1.value * input_n2.value}`}
+
+    function dividir () {
+    div_mensagem.innerHTML = `A divisão entre ${input_n1.value} e ${input_n2.value} é ${input_n1.value / input_n2.value}`}
+
+    function subtrair () {
+    div_mensagem.innerHTML = `A subtração entre ${input_n1.value} e ${input_n2.value} é ${ Number(input_n1.value) - Number(input_n2.value) }`}
+
+    function somar () {
+    div_mensagem.innerHTML = `A divisão entre ${input_n1.value} e ${input_n2.value} é ${ Number(input_n1.value) + Number(input_n2.value) }`}
+
+    function verQuociente() {
+    var n1 = Number(input_n1.value);
+    var n2 = Number(input_n2.value);
+    var quociente = n1/n2
+    div_mensagem.innerHTML = `O resto da divisão entre ${n1} por ${n2} é ${n1%n2}` }
+
+</script>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação de string</title>
+</head>
+
+<body>
+    <!-- Outra forma de utilizar label como uma <div> >>>> 
+    <label>
+        Digite uma frase:
+        <input oninput="manipular()" type="text" id="ipt_frase">
+    </label> <br> 
+    -- on(input) é um atributo
+    -- Técnica debounce
+    -- ViaCEP
+    -->
+    <label for="ipt_frase">Digite uma frase:</label> <br>
+    <input oninput="manipular()" type="text" id="ipt_frase">
+
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function manipular() {
+        var frase = ipt_frase.value;
+        var tamanho = frase.length
+        var uppercase = frase.toUpperCase();
+        var lowercase = frase.toLowerCase();
+
+        console.log(frase)
+
+
+        div_msg.innerHTML = `
+            Analise da frase <br>
+            Frase original: <h3> ${frase} </h3> <br>
+            Frase Maíuscula: ${uppercase} <br>
+            Frase Mínuscula: ${lowercase} <br>
+            Tamanho da frase: ${tamanho} <br>
+        `
+
+        if (tamanho >= 8 && tamanho <= 10) {
+            div_msg.innerHTML += `Tem 8 caracteres? <b style="color: green"> Válido </style b>`
+        } else {
+            div_msg.innerHTML += `Tem 8 caracteres? <b style="color: red"> Inválido </style b>`
+        }
+
+        // Começa com
+        // Termina com
+        if (frase.startsWith('a')) {
+            div_msg.innerHTML += `<br> Começa com 'a'? <b style="color: green"> Válido </style b>`
+        } else {
+            div_msg.innerHTML += `<br> Começa com 'a'? <b style="color: red"> Inválido </style b>`
+        }
+        if (frase.endsWith('.com')) {
+            div_msg.innerHTML += `<br> Termina com '.com'? <b style="color: green"> Válido </style b>`
+        } else {
+            div_msg.innerHTML += `<br> Termina com '.com'? <b style="color: red"> Inválido </style b>`
+        }
+
+        // caracteres Inclusos
+
+        if (frase.includes('@')) {
+            div_msg.innerHTML += `<br> A frase inclui '@'? <b style="color: green"> Válido </style b>`
+        } else {
+            div_msg.innerHTML += `<br> A frase inclui '@'? <b style="color: red"> Inválido </style b>`
+        }
+
+        // Letras minísculas e maíusculas
+
+        if (lowercase.includes('abc')) {
+            div_msg.innerHTML += `<br> A frase inclui 'abc ou 'ABC'? <b style="color: green"> Válido </style b>`
+        } else {
+            div_msg.innerHTML += `<br> A frase inclui 'abc ou 'ABC'? <b style="color: red"> Inválido </style b>`
+        }
+        var possuiMinuscula = frase != uppercase; // Aqui obtemos um resultado "true" ou "false", desta forma não é necessário revalidar novamente no if com "possuiMinuscula == true", pois aqui já temos a resposta.
+
+        if (possuiMinuscula) {
+            div_msg.innerHTML += `<br> A frase inclui letras minúsculas? <b style="color: green"> Válido </style b>`
+        } else {
+            div_msg.innerHTML += `<br> A frase inclui letras minúsculas? <b style="color: red"> Inválido </style b>`
+        }
+        var possuiMaiuscula = frase != lowercase;
+
+        if (possuiMaiuscula) {
+            div_msg.innerHTML += `<br> A frase inclui letras maiúsculas? <b style="color: green"> Válido </style b>`
+        } else {
+            div_msg.innerHTML += `<br> A frase inclui letras maiúsculas? <b style="color: red"> Inválido </style b> <br>`
+        }
+
+        // Trocando caracter por outro caracter, pode ser um espaço vazio 
+
+        div_msg.innerHTML += ` <br>
+        Frase Formatada: ${frase.replace('a', '@')} <br>
+        Frase Formatada removendo todos os "w": ${frase.replaceAll('w', '')} <br>
+        Frase com TUDO Formatado: ${frase.replaceAll('a', '@')} <br>
+        Primeiro caractere: ${frase[0]} <br>
+        Terceiro caractere: ${frase[3]} <br>
+        Ultima caractere: ${frase[frase.length - 1]} <br>
+        `
+        // .substr (sub string) (0,4) 0- valor das posiçoes 4- valor de números de caracteres (lenght) da frase
+    }
+</script>

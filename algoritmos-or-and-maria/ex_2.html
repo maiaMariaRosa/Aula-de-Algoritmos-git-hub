@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Preferências de Compras</title>
+</head>
+<body>
+    Tamanho da tela: <br>
+    <input type="text" name="" id="ipt_tamanho"> <br>
+    Cor do celular: <br>
+    <select name="" id="select_cor">
+        <option value="1">Preto</option>
+        <option value="2">Prata</option>
+        <option value="3">Azul</option>
+        <option value="4">Vermelho</option>
+        <option value="#" selected disabled>Selecione</option>
+    </select><br>
+    <button onclick="analisar()">Será que ele gosta?</button> <br><br>
+   
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function analisar() {
+        var tamanho = Number(ipt_tamanho.value)
+        
+        var cor = select_cor.value 
+       
+        if ( cor == '1' && tamanho > 6.5 ) {
+            div_msg.innerHTML = `<img src="https://img.freepik.com/fotos-gratis/mulher-atraente-feliz-dancando-e-se-divertindo-levantando-as-maos-despreocupada-curtindo-musica-encostada-na-parede-branca_176420-38816.jpg?semt=ais_incoming&w=740&q=80">`
+        } else if (  cor == '2' && tamanho > 6.5 ) {
+            div_msg.innerHTML = `<img src="https://img.freepik.com/fotos-gratis/mulher-atraente-feliz-dancando-e-se-divertindo-levantando-as-maos-despreocupada-curtindo-musica-encostada-na-parede-branca_176420-38816.jpg?semt=ais_incoming&w=740&q=80">`
+        } else {
+            div_msg.innerHTML = `<img height="600" src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7EpE_OtToGXluYqkrYPIFDQsNTOo28ENeFA&s"> `
+        }
+
+    }
+    /* Simulador de Preferências de Compras: Será que Robervaldo Gostaria?
+Imagine que Robervaldo está buscando um novo celular. Ele tem algumas preferências específicas para a escolha de modelo.
+
+Robervaldo prefere celulares com tela grande (acima de 6.5 polegadas) e que sejam da cor preta ou prata.
+
+Com base nessas informações, crie um simulador no qual:
+
+a) Solicite o tamanho da tela do celular encontrado.
+
+b) Solicite a cor do celular encontrado, dentre as opções:
+
+Preto
+Prata
+Azul
+Vermelho
+c) Ao clicar em "Será que ele gosta?", mostre, abaixo:
+
+A imagem de uma pessoa feliz, caso as características do celular coincidam com as preferências de Robervaldo.
+Ou a imagem de uma pessoa decepcionada, caso contrário.  */
+</script>

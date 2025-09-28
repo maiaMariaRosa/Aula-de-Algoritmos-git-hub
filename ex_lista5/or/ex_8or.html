@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Augusto Bivio </title>
+</head>
+<body>
+    Nome da empresa: <br><br>
+    <input type="text" name="" id="input_nome"> <br><br>
+    Valor da bolsa da empresa: <br><br> 
+    <input type="text" name="" id="input_bolsa"> <br><br>
+    Valor do VR da empresa: <br><br>
+    <input type="text" name="" id="input_VR"> <br><br>
+    Tempo de deslocamento da empresa para a SPTech :
+<br><br> <input type="text" name="" id="input_deslocamento"> <br><br>
+    <button onclick="avaliar()">É preferida?</button><br><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function avaliar(){
+        var nome = input_nome.value
+        var bolsa = input_bolsa.value
+        var VR = input_VR.value
+        var deslocamento = input_deslocamento.value
+        if ( bolsa >= 1800 || VR >=20 || deslocamento <= 30 ) {
+        div_msg.innerHTML = `A empresa ${nome} é uma de suas preferências`
+        } else { 
+        div_msg.innerHTML = `A empresa ${nome} está fora da sua lista`
+        }
+    }
+    /*
+A bolsa deve ser pelo menos 1800 ou o VR pelo menos 20 
+ou deve ficar a no máximo 30 minutos de tempo de deslocamento da faculdade.
+
+e) Ao clicar em "É preferida?", mostre uma dessas mensagens na própria página, abaixo do botão: 
+
+   "A empresa X é uma de suas preferências", caso a empresa atenda a pelo menos um dos critérios aqui explicados  
+
+   "A empresa X está fora da sua lista", caso contrário 
+    */
+</script>

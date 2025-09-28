@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrutura While</title>
+</head>
+
+<body>
+    <p>Variavel de Controle</p>
+    <p>Iteração</p>
+    <button onclick="contar()">Contar</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function contar() {
+        /* var cont = 0
+         while (cont < 100 ) {
+         div_msg.innerHTML += `Contagem: ${++cont} <br>`;
+         }*/
+
+        /*var i = 0
+        while (i < 300) {
+            console.log(`Contagem: ${++i} <br>`)
+            div_msg.innerHTML = `Contagem: ${i} <br>`
+        }*/
+        var mensagem = 0
+        while (mensagem < 250) {
+            mensagem += ` <br> Contagem: ${++mensagem} <br>`
+        }
+    }
+</script>

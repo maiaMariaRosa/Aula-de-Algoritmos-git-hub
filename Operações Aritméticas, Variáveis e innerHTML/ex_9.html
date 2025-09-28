@@ -1,0 +1,94 @@
+//9. Eleição
+Crie um programa o qual:  
+a) Solicite a quantidade de votos que o "Candidato A" teve na eleição  
+b) Solicite a quantidade de votos que o "Candidato B" teve na eleição  
+c) Solicite a quantidade de votos brancos que houve na eleição  
+d) Solicite a quantidade de votos nulos que houve na eleição  
+e) Ao clicar em "Resultado da Eleição", exibir textos conforme o exemplo abaixo:  
+    Total de votos: 200  
+
+    Candidato A: 40% (80 votos)  
+
+    Candidato B: 35% (70 votos)  
+
+    Inválidos: 25% (50 votos)  
+
+A quantidade de votos "Inválidos" é a soma de brancos e nulos - valores colhidos nos itens c) e d) -  
+
+Não se preocupe em mostrar primeiro o "vencedor". Não temos como saber isso com o que aprendemos na programação até aqui ;)   
+
+Mostre os candidatos na ordem que quiser.  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Eleição</title>
+</head>
+<body>
+    Quantidade de votos do 1º candidato:
+    <input id="input_candidato1" type="text"></input> <br>
+    Quantidade de votos do 2º candidato:
+    <input id="input_candidato2" type="text"></input> <br>
+    Quantidade de votos em branco:
+    <input id="input_branco" type="text"></input> <br>
+    Quantidade de votos anulados:
+    <input id="input_anulados" type="text"></input> <br>
+    
+    <button onclick="resultado()">Resultado da eleição</button> <br>
+
+    <div id="div_eleiçao" ></div>
+    
+    
+</body>
+</html>
+
+<script>
+function resultado() {
+    var candidato1 = Number(input_candidato1.value)
+    var candidato2 = Number(input_candidato2.value)
+    var invalido = Number(input_branco.value) * Number(input_anulados.value) 
+
+    var total =  
+
+    console.log(candidato1)
+
+   div_eleiçao.innerHTML = `Total de votos: ${candidato1 + candidato2 + invalido } <br> 
+    Candidato A: % ${candidato1 * 200 / 100}  
+<br>
+    Candidato B: % ${candidato2 * 200 / 100}  
+<br>
+    Inválidos: % ${invalido * 200 / 100}
+    `  
+}
+
+</script>
+
+/* total = c1 + c2 + br + nl
+total = 80 + 70 + 25 + 25
+
+c1 = 80
+c2 = 70
+brancos = 25
+nulos = 25
+
+total = c1 + c2 + brancos + nulos
+total = 200 
+
+
+200 - 100
+80  -  x
+
+
+x200 = 100 * 80
+x = 100 * 80 / 200
+ 
+        valor variavel SOBRE valor total VEZES 100 que é o percentual
+formula ideal = x = 80 / 200 * 100
+
+200 - 100
+ x  -  50
+
+x100 = 200 * 50
+x = 200 * 50 / 100
+*/

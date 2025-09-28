@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festa</title>
+</head>
+<body>
+    Qual sua idade?
+    <input type="text" id="input_idade">
+<br>
+    <button onclick="irfesta()">Ir para a Festa</button> <br>
+
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+<script>
+
+    function irfesta() {
+       var idade = Number(input_idade.value);
+        if (idade < 18) {
+             alert(` Pedir permissão para o responsável`)
+        }
+
+        alert ('#partiuFesta')
+
+    }
+
+
+/* b1) Caso a idade seja menor que 18, deve aparecer um alert com a frase "Pedir permissão pro responsável" 
+
+   b2) Sempre vai aparecer um alert com a palavra "#partiuFesta" ao final  
+
+OBS: caso tenha 18 anos ou mais, deve exibir somente a segunda mensagem.*/
+</script>

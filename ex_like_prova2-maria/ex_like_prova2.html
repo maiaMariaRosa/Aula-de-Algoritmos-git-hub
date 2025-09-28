@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANTIQUÁRIO VELHO VALIOSO</title>
+</head>
+
+<body>
+    <div id="div_cadastro">
+        Descrição da Peça: <br>
+        <input type="text" id="input_descriçao"><br><br>
+        Tipo da Peça <br>
+        <select id="select_peça">
+            <option selected disabled value="#">Selecione uma opção</option>
+            <option value="1">L</option>
+            <option value="2">M</option>
+            <option value="3">P</option>
+        </select><br><br>
+
+        Valor de compra da Peça:<br>
+        <input type="text" id="input_valor"><br><br>
+
+        Quantidade da Peça:<br>
+        <input type="text" id="input_quantidade"><br><br>
+
+        <button onclick="cadastrar()"><b>CADASTRAR</b></button> <br>
+        <div id="div_erro"></div> <br><br>
+        <button onclick="analisar()"><b>ANALISAR</b></button> <br><br>
+        <div id="div_mensagem"></div> <br>
+    </div>
+    <div id="div_extrato" style="display: none">
+        <button onclick="exibir()"><B>EXIBIR</B></button><br><br>
+        
+        <div id="div_msgExtrato"></div> <br><br>
+
+        <button onclick="voltar()" style.display="none"><b>VOLTAR A TELA DE CADASTRO</b></button>
+        <br> <br> 
+        <button onclick="comprar()" id="button_comprar"><H4>COMPRAR!</H4></button>
+        <br> <br>
+        <div id="div_imagem"></div>
+    </div>
+    
+</body>
+
+</html>
+<script>
+
+    var valorAcumulado = 0
+    var qtAcumulado = 0
+    var valorL = 0
+    var valorM = 0
+    var valorP = 0
+   // var valorTotal = 0
+  
+
+    function cadastrar() {
+        var descriçao = input_descriçao.value;
+        var peca = select_peça.value;
+        var valor = Number(input_valor.value);
+        var quantidade = Number(input_quantidade.value);
+        qtAcumulado += quantidade;
+
+        var msgErro = `<br>Descrição da Peça – tem que estar preenchido. <br>
+       Tipo da Peça – precisa estar selecionado. <br>
+       Valor de compra da Peça – tem que ser maior 100,00. <br> 
+       Quantidade da Peça tem que ser maior que 0.`
+
+        if (descriçao == '') {
+            div_erro.style.display="block"
+            div_erro.innerHTML = `${msgErro}`
+        } else if (valor <= '100') {
+            div_erro.style.display="block"
+            div_erro.innerHTML = `${msgErro}`
+        } else if (quantidade <= '0') {
+            div_erro.style.display="block"
+            div_erro.innerHTML = `${msgErro}`
+        } else if (peca == '#') {
+            div_erro.style.display="block"
+            div_erro.innerHTML = `${msgErro}`
+        } else {
+            div_erro.style.display="none"
+            alert(`Peça: "${descriçao}" cadastrada com sucesso`)
+        }
+        var valorcadastro = valor * quantidade
+        var jurosL = valorcadastro + (valorcadastro * 7.5 / 100) ;
+        var jurosM = valorcadastro + (valorcadastro * 12.5 / 100) ;
+        var jurosP = valorcadastro + 10 ;
+        valorL = jurosL
+        valorM = jurosM
+        valorP = jurosP
+
+        if ( peca == '1'){
+            valorAcumulado += valorL
+        } else if ( peca == '2'){
+            valorAcumulado += valorM
+        } else if ( peca == '3'){
+            valorAcumulado += valorP
+        }
+    }
+    function analisar() {
+        var valor = Number(input_valor.value);
+        var quantidade = Number(input_quantidade.value);
+        var descriçao = input_descriçao.value;
+        var peca = select_peça.value;
+
+        if (qtAcumulado == 0) {
+            alert('A Análise é realizada somente após o cadastramento das peças')
+        } else if (descriçao == ''){
+            alert('A Análise é realizada somente após o cadastramento das peças')
+        } else if (peca == '#'){
+            alert('A Análise é realizada somente após o cadastramento das peças')
+        } else if (valor == 0){
+            alert('A Análise é realizada somente após o cadastramento das peças')
+        } else {
+        div_cadastro.style.display = "none";
+        div_extrato.style.display = "block";
+        };
+    }
+    function exibir() {
+        div_extrato.style.display = "block";
+        var descriçao = input_descriçao.value;
+        var valor = Number(input_valor.value);
+        var quantidade = Number(input_quantidade.value);
+        var peca = select_peça.value;
+        
+
+        if ( peca == '1'){
+            div_msgExtrato.innerHTML += `<br> Peça: ${descriçao} | Tipo: ${peca} | Valor: ${valor.toFixed(2)} | <br>
+        Quantidade: ${quantidade} | Valor final: ${valorL.toFixed(2)} <br> 
+        <b>Valor Acumulado: ${valorAcumulado.toFixed(2)}</b>`
+        } else if ( peca == '2'){
+            div_msgExtrato.innerHTML += `<br> Peça: ${descriçao} | Tipo: ${peca} | Valor: ${valor.toFixed(2)} | <br>
+        Quantidade: ${quantidade} | Valor final: ${valorM.toFixed(2)} <br> 
+        <b>Valor Acumulado: ${valorAcumulado.toFixed(2)}</b>`
+        } if ( peca == '3'){
+            div_msgExtrato.innerHTML += `<br> Peça: ${descriçao} | Tipo: ${peca} | Valor: ${valor.toFixed(2)} | <br>
+        Quantidade: ${quantidade} | Valor final: ${valorP.toFixed(2)} <br> 
+        <b>Valor Acumulado: ${valorAcumulado.toFixed(2)}</b>`
+        }
+        
+
+    }
+    function voltar() {
+        div_cadastro.style.display = "block";
+        div_extrato.style.display = "none";
+        button_comprar.style.display="block"
+    }
+        function comprar(){
+            if (valorAcumulado > 0) {
+            alert ('Obrigado pela compra!')
+            div_imagem.innerHTML = `<img src="https://img.freepik.com/vetores-gratis/ilustracao-de-desenho-animado-de-compras-desenhada-a-mao_52683-155999.jpg">`
+            button_comprar.style.display="none"}
+        }
+    /*
+    Para o Valor Final, o acréscimo varia de acordo com o tipo da peça, 
+    onde: L possui acréscimo de 7.5%, M possui acréscimo de 12.5% e P possui acréscimo de R$10,00.
+    valorFinal - 100
+    X - 7.5%
+    Descrição da Peça – tem que estar preenchido 
+    
+    Tipo da Peça – tem que ser igual a “L”, “M” ou “P” 
+    
+    Valor de compra da Peça – tem que ser maior 100,00. 
+    
+    Quantidade da Peça - tem que ser maior que 0.
+    
+    Tenha o botão “analisar”, que quando clicado, verificará se alguma peça foi cadastrada.
+    Se não foi cadastrado, emitir alerta com a mensagem “A Análise é realizada somente após o cadastramento das peças” 
+    não seguir em frente. Se já foi cadastrada alguma peça, ocultar a “Tela de Cadastramento” 
+    e mostrar a tela de “Extrato”. 
+    */
+</script>

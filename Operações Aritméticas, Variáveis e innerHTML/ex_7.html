@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo da média da SPTech</title>
+</head>
+<body>
+    Inserir nome:
+    <input id="input_nome" type="text" placeholder="Ex.: João Silva"> </input> <br> <br>
+
+    Inserir nota da prova continuada: <br>
+    <input id="input_continuada" type="text"></input> <br>
+    Inserir nota da prova semestral: <br>
+    <input id="input_semestral" type="text"></input> <br> <br>
+    
+
+    <button onclick="media()">Calcular média</button>
+
+    <div id='div_Media'> </div>
+
+</body>
+</html>
+
+<script>
+
+    function media() {
+        var continuada = Number(input_continuada.value)
+        var semestral = Number(input_semestral.value)
+        var nome = input_nome.value
+
+        div_Media.innerHTML = `A média de ${nome} será de ${ ( continuada * 0.4 ) + (semestral * 0.6 )}`
+    }
+
+</script>

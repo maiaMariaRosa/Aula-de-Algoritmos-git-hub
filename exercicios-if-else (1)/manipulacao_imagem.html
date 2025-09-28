@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      Exemplo de imagem no HTML: 
+      Imagem local (baixada): <img src="./imagem_pinguim.webp" alt=""> 
+      Imagem online: <img src="https://static.todamateria.com.br/upload/pi/ng/pinguim01-cke.jpg"> 
+     -->
+
+    <button onclick="mostrar1()">Mostrar 1</button>
+    <button onclick="mostrar2()">Mostrar 2</button>
+
+    <!-- abaixo, vamos criar uma imagem dentro da div através do JS -->
+    <div id="div_imagem">Imagem 1:</div> <!-- identifique a div, pois vamos manipulá-la para adicionar a imagem -->
+
+
+    <!-- abaixo, vamos manipular a tag img já existente para alterar a imagem através do JS -->
+    Imagem 2: <img id="img_teste" alt="" /> <!-- identifique a própria imagem, pois vamos manipulá-la diretamente -->
+  </body>
+</html>
+<script>
+   function mostrar1() {
+      var imagem1 = `<img src="https://static.todamateria.com.br/upload/pi/ng/pinguim01-cke.jpg">`; // exemplo de trecho de texto que representa uma tag IMG, contendo o src da imagem
+      var imagem2 = `<img src="./imagem_pinguim.webp" alt="">`; // exemplo de trecho de texto que representa uma tag IMG, contendo o src da imagem
+      
+      div_imagem.innerHTML = `Imagem 1: ${imagem1}`;  // interpola o texto da tag IMG e renderiza dentro da div, ao interpretar o innerHTML
+      // div_imagem.innerHTML = `Imagem 1: <img src="./imagem_pinguim.webp" alt="">`; // conteúdo final será algo como esse
+   }
+
+   function mostrar2() {
+      var recurso1 = 'https://static.todamateria.com.br/upload/pi/ng/pinguim01-cke.jpg'; // endereço da imagem online
+      var recurso2 = './imagem_pinguim.webp'; // endereço da imagem local (deve estar baixado na máquina, nesse caso, no mesmo diretório "./")
+
+      img_teste.src = recurso1; // acessa o atributo "src" do elemento identificado como "img_teste" e atribui o recurso1 (endereço) como recurso daquela tag img
+   }
+</script>

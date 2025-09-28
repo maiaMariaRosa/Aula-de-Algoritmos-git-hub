@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticação</title>
+</head>
+<body>
+    Login: 
+    <input type="text" id="ipt_login"> <br>
+    Senha:
+    <input type="password" id="ipt_senha"> <br>
+    informação pessoal:
+    <input type="password" id="ipt_info"> <br>
+    <br>
+    <button onclick="autenticar()">Autenticar</button>
+    <br><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function autenticar() {
+        var login = ipt_login.value
+        var senha = ipt_senha.value
+        var info = ipt_info.value
+        if ( login == 'ana' && senha == 'braga' && info == '1949') {
+            div_msg.innerHTML = `<span style="color:green"><b> Usuário autenticado </b></span>`
+        } else if ( login == 'ana' && senha == 'braga' && info == 'louro josé') {
+            div_msg.innerHTML = `<span style="color:green"><b> Usuário autenticado </b></span>`
+        } else {
+            div_msg.innerHTML = `<b> Falha na autenticação </b>`
+        }
+    }
+    /* 
+b) Ao clicar num botão "Autenticar", exiba uma dessas frases abaixo do botão: 
+
+     b.1.) "Usuário autenticado", caso o login seja "ana", 
+     a senha "braga" e a informação pessoal for ou "1949" ou "louro josé" 
+
+     b.2.) "Falha na autenticação", caso as regras de verificação em b.1) falhem 
+*/
+</script>

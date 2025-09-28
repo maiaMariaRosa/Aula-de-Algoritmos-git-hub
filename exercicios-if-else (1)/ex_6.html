@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmolândia</title>
+</head>
+<body>
+    Quantidade de energia (em KWh) utilizada por mês: <br>
+    <input type="text" id="input_KWh"> <br>
+    <button onclick="calcular()">Calcular conta de luz</button> <br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function calcular() {
+        var kwh = Number(input_KWh.value)
+        var contaLuz = (kwh * 0.85)
+            if (kwh >= 100) {
+                alert ('Sua conta de luz é R$'+contaLuz)
+            }else {
+                contaLuz = kwh - (kwh * 10 / 100)
+                alert ('Sua conta de luz é R$'+contaLuz)
+            }
+        
+    }
+    // kwh - 100
+    // X - 10
+    // X = kwh * 10 / 100
+
+     //  
+</script>

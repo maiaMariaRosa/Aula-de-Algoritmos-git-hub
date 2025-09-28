@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação das finanças</title>
+</head>
+<body>
+    Inserir saldo bancário:
+    <input type="text" id="input_saldo">
+    <br><br>
+    <button onclick="verificar()">Verificar finanças</button>
+    <br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function verificar() {
+        var saldo = Number(input_saldo.value)
+        if (saldo >=1 ) {
+            div_mensagem.innerHTML = `Saldo positivo! ^ w ^`        
+            if (saldo == 0) {
+            div_mensagem.innerHTML = `Conta zerada :(`
+        }
+        } else {
+            div_mensagem.innerHTML = `Está devendo!`
+        } 
+        
+        
+          
+       
+        
+    }
+    /*
+    ) Caso o saldo em conta for igual a zero (==0), exiba esta frase na cor preta na tela: "Conta zerada".  
+
+    b2) Caso o saldo seja negativo (<0), exiba esta frase na cor vermelha na tela: "Está devendo!".   
+
+    b3) Caso o saldo seja positivo (>0), exiba esta frase na cor azul: "Saldo positivo! sorriso"  
+*/
+</script>

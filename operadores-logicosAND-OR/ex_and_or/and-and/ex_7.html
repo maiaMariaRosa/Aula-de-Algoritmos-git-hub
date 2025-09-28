@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Login</title>
+</head>
+<body>
+    Insira seu login: <br><br>
+    <input type="text" id="input_login"> <br><br>
+    Insira sua senha: <br><br>
+    <input type="password" id="input_password"> <br><br>
+    <button onclick="entrar()">Entrar</button>
+</body>
+</html>
+<script>
+    function entrar() {
+        var login = input_login.value
+        var senha = input_password.value
+
+        if ( login == 'SPTech' && senha == 'digital') {
+            alert ('Usuário autenticado com sucesso')
+        } else {
+            alert ('Falha na autenticação')
+        }
+    }
+    /*
+       Caso o login seja "SPTech" e a senha seja "digital", exibir um alert com a frase "Usuário autenticado com sucesso" 
+
+   Caso contrário, exibir um alert com "Falha na autenticação"  
+
+*/
+</script>

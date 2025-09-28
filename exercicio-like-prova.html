@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Diário de Viagens</title>
+</head>
+<body>
+    Distância da Corrida (em km) <br><br>
+    <input id="input_distancia" type="text"></input> <br><br>
+    O Valor do Pedágio <br><br>
+    <input id="input_valorPedagio" type="text"></input> <br><br>
+    Bandeira <br><br> 
+    <input id="input_bandeira" type="text"></input> <br><br>
+
+    <button onclick="realizarCorrida()">Realizar corrida</button> <br><br>
+
+    <div id="divMensagem"></div> <br><br>
+</body>
+</html>
+
+<script>
+    var contMensagem = divMensagem
+    var totalCorrida = 0
+    var contCorridas = 0
+    var contAcumulado = 0
+    function realizarCorrida() {
+       
+        var distancia = Number(input_distancia.value)
+        var valorPedagio = Number(input_valorPedagio.value)
+        var bandeira = Number(input_bandeira.value)
+        if ( bandeira >=1) {
+            if (bandeira <=3) {
+                contCorridas += 1
+                var valorCorrida = 1.25 * distancia 
+                if ( distancia > 50 ) {
+                    valorCorrida = valorCorrida - (valorCorrida*10/100)
+                }
+                valorCorrida = valorCorrida + valorPedagio
+                if (bandeira == 1) {
+
+                    valorCorrida = valorCorrida - (valorCorrida*3.5/100)
+                }
+
+                if (bandeira == 2) {
+                    valorCorrida = valorCorrida + (valorCorrida*11.7/100)
+                }
+                if (bandeira == 3) {
+                    valorCorrida = valorCorrida + (valorCorrida*22.3/100)
+                }
+                totalCorrida += valorCorrida
+                contAcumulado += valorCorrida 
+                
+                contMensagem.innerHTML = `${contMensagem.innerHTML} <br> ${contCorridas}ª corrida de ${distancia} km com valor de
+                R$${valorCorrida} – ACUMULADO DO DIA R$${contAcumulado} `
+           }
+        }
+    }
+// R$10 - 8km
+// x - 1km   
+//  10.1 = 8x
+// 10/8
+// 1,25
+// O valor da corrida é de R$ 10,00 a cada 8 Km percorrido, se a distância da corrida for maior que 50 Km
+// aplicar desconto de 10%, somar o valor do pedágio e aplicar a regra da bandeira 
+// conforme tabela abaixo
+
+// 10 - 8
+// x  - 10   10.10 =8x
+// 100/8 = 12
+
+</script>

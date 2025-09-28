@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Refrigerante</title>
+</head>
+<body>
+   Quantas latas de Refrigerante você toma por dia?
+   <input type="text" id="input_latas"> <br>
+   <br>
+   <button onclick="qtRefri()">Quantos refris?"</button> <br>
+   
+   <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function qtRefri() {
+        var qtLatas = Number(input_latas.value)
+        var qtRefrigerante = qtLatas * 365
+
+        if (qtRefrigerante <=500) {
+            div_mensagem.innerHTML += ` Você consome ${qtRefrigerante} latas de refrigerante durante o período de 365 dias (1 ano) <br>`
+        } else { div_mensagem.innerHTML += ` Você consome ${qtRefrigerante} durante o período de 365 dias (1 ano). Cuidado com a diabetes!`}
+
+        }
+    
+
+
+
+</script>

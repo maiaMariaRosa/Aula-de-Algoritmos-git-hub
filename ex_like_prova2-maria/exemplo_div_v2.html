@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <div id="div_pagina"></div>   
+<!-- 
+   <div>
+      
+   </div> 
+-->
+</body>
+</html>
+<script>
+   var tela1 = `<input type="text"> <button onclick="proxima()">Próxima tela</button>`;
+
+   var tela2 = '<button onclick="voltar()">Voltar</button>';
+
+   function proxima() {
+      div_pagina.innerHTML = tela2;
+   }
+
+   function voltar() {
+      div_pagina.innerHTML = tela1;
+   }
+
+   voltar();
+</script>

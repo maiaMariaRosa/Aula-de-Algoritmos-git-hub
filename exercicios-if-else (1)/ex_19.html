@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Mercado BOM DOCE</title>
+</head>
+<body>
+    Quantos chocolates irá comprar? <br><Br>
+    <input type="text" id="input_qtDoces"> <Br><Br>
+    <button onclick="compra()">Comprar</button> <br>
+    <br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function compra() {
+        var qtDoces = Number(input_qtDoces.value)
+        var valorFinal = qtDoces*3
+        var valorDesconto = qtDoces * 2.50
+        console.log (valorFinal)
+        console.log (valorDesconto)
+        if (qtDoces <= 12 ) {
+            div_mensagem.innerHTML = `O valor da sua compra foi de ${valorFinal}`
+        } else {
+            div_mensagem.innerHTML = `O valor da sua compra foi de ${valorDesconto}`
+        }
+    }
+</script>

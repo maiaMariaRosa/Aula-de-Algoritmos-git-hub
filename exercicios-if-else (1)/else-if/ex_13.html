@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon</title>
+</head>
+<body>
+    Qual pokemon você quer escolher? <br><br>
+    <input type="text" id="input_pokemon"><br><br>
+    <button onclick="resultado()">Escolher Pokémon</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function resultado(){
+        var pokemon = input_pokemon.value
+        console.log(pokemon)
+       //console.log(`Bulbasaur ${pokemon == 'Bulbasaur'}\n${'Bulbasaur'.length}\n${pokemon.length}`);
+        if (pokemon == 'Bulbasaur' ){
+            div_msg.innerHTML = `<img src="https://i.pinimg.com/736x/6f/aa/74/6faa74e32ce5f00f2dbc9c0b095cda52.jpg"> `
+            } else if (pokemon == 'Charmander' ){
+                    div_msg.innerHTML = `<img src="https://i.pinimg.com/736x/57/0e/e4/570ee4c32a57d0bb353f00c708e5fae7.jpg"> `
+                    } else if (pokemon == 'Squirtle'){
+                div_msg.innerHTML = `<img src="https://i.pinimg.com/736x/30/7e/f1/307ef121d47fbfe76e928f9ea79d0fd5.jpg"> `
+                } else {
+            div_msg.innerHTML = `<span style="color:red"> Pokémon não reconhecido. </span> `
+        } 
+    }
+     /*Bulbasaur → Exibir imagem do Bulbasaur
+Charmander → Exibir imagem do Charmander
+Squirtle → Exibir imagem do Squirtle
+Se o usuário inserir um nome inválido, exibir uma mensagem "Pokémon não reconhecido."*/
+</script>

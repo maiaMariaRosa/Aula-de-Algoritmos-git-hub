@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <div id="div_pagina">
+      <input type="text">
+      <button onclick="proxima()">Próxima tela</button>
+   </div>   
+<!-- 
+   <div>
+      
+   </div> 
+-->
+</body>
+</html>
+<script>
+   function proxima() {
+      div_pagina.innerHTML = '<button onclick="voltar()">Voltar</button>'
+   }
+
+   // coloca novamente o conteúdo original da div
+   function voltar() {
+      div_pagina.innerHTML = `
+         <input type="text">
+         <button onclick="proxima()">Próxima tela</button>
+      `
+   }
+</script>

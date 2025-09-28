@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerta de Desconforto Térmico</title>
+</head>
+<body>
+    Qual a temperatura atual? <br><br>
+    <input type="text" name="" id="input_temp"> <br><br>
+    <button onclick="analisar()">Analisar clima</button>
+</body>
+</html>
+<script> 
+    function analisar(){
+        var temperatura = input_temp.value
+        if (temperatura <21 || temperatura > 24 ) {
+            alert ('Alerta de desconforto!')
+        } if (temperatura <21 ) {
+            alert ('As pessoas vão ter hipotermia')
+        } if (temperatura > 24) {
+            alert ('As pessoas vão derreter')
+        }
+    }
+
+/*
+21-24
+b) Ao clicar em "Analisar clima", apenas se a temperatura não for confortável, 
+exiba um alert com a frase "Alerta de desconforto!" e, depois, uma das frases a seguir, também em alerts: 
+
+  b.1) "As pessoas vão ter hipotermia", caso a temperatura seja menor que o limite inferior da zona de 
+  conforto 
+
+  b.2) "As pessoas vão derreter", caso a temperatura seja maior que o limite superior da zona de conforto 
+
+c) Lembrando que, em caso de temperatura confortável, simplesmente nada acontece 
+*/
+</script>

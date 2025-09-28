@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economia do bilhete unico</title>
+</head>
+<body>
+    Insira o valor pago na passagem de trem:
+    <input id="input_Valor" type="text"></input> <br>
+    Quantas viagens você fará no mês?
+    <input id="input_Viagens" type="text"></input> <br>
+<div>
+    
+    <button onclick="calcularPass()">Calcular</button> <br>
+
+    Valor da passagem completo: <br> <br>
+    <div id='divTotal'></div>
+<br> <br>
+    
+    <button onclick="calcularEcon()">Calcular economia</button> <br>
+    Valor da passagem com economia do bilhete único: <br> <br>
+    <div id='divEconomia'></div>
+
+</div>
+
+</body>
+</html>
+
+<script>
+    function calcularPass() {
+        divTotal.innerHTML = `O valor gasto na passagem de valor inteiro é durante as ${input_Viagens.value} viagens, 
+        é R$${input_Viagens.value * input_Valor.value}. <br>
+        R$${input_Valor.value * 2} por dia.`
+    }
+    function calcularEcon() {
+        divEconomia.innerHTML = `O valor pago das passagens com a economia do Bilhete único durante as ${input_Viagens.value} viagens, 
+        é <b>R$${ (input_Valor.value / 2 ) * input_Viagens.value}.</b> <br>
+        <b> R$${ (input_Valor.value / 2 ) * 2} </b> por dia.`
+}
+</script>

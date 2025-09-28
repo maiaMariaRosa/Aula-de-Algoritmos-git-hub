@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de divisão</title>
+</head>
+<body>
+    Insira divisível:
+    <input id="input_divisivel" type="text"></input> <br> <br>
+    Insira divisor:
+    <input id="input_divisor" type="text"></input> <br> <br>
+
+    <button onclick="quociente()">Quociente</button> <br>
+
+    <button onclick="resto()">Resto</button> <br>
+    
+    <button onclick="OperCompleta()">Operação completa</button> <br> <br>
+
+    <div id="div_divisao"> Resultado da divisão: </div>
+</body>
+</html>
+<script>
+    function quociente() { 
+        div_divisao.innerHTML = `O quociente entre o divisível ${input_divisivel.value} e o divisor ${input_divisor.value} 
+        é ${input_divisivel.value / input_divisor.value} `
+    }
+    function resto() {
+        div_divisao.innerHTML = `O resto da divisão entre o divisível ${input_divisivel.value} e o divisor ${input_divisor.value} 
+        é ${input_divisivel.value % input_divisor.value} `
+    }
+    
+    function OperCompleta() {
+        div_divisao.innerHTML = `O quociente entre o divisível ${input_divisivel.value} e o divisor ${input_divisor.value} 
+        é ${input_divisivel.value / input_divisor.value}. <br> E o resto desta divisão é ${input_divisivel.value % input_divisor.value}`
+    }
+
+</script>

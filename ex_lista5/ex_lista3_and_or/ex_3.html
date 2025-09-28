@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select name="" id="select_tipo">
+        <option value="#"selected disabled>Selecione uma opção</option>
+        <option value="1">Comum</option>
+        <option value="2">Estudante</option>
+        <option value="3">Idoso/PNE</option>
+    </select>
+    <select name="" id="select_passagem">
+        <option value="#"selected disabled>Selecione uma opção</option>
+        <option value="1">Passagem única</option>
+        <option value="2">Passagem integração</option>
+    </select>
+    <button onclick="simular()">Simular preço</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+ function simular() {
+    var passagemU = 4.4
+    var passagemI = 5.9
+    var tipo = select_tipo.value
+    var passagem = select_passagem.value
+
+    if (tipo == '3' ) {
+        div_msg.innerHTML = `Valor da passagem escolhida: <b> Gratuidade garantida <b>`
+    } else if ( tipo == '2' && passagem == '1'){
+        div_msg.innerHTML= `Valor da passagem escolhida: ${passagemU / 2}`
+    } else if ( tipo == '2' && passagem == '2'){
+        div_msg.innerHTML= `Valor da passagem escolhida: ${passagemI / 2}`
+    } else if ( tipo == '1' && passagem == '1'){
+        div_msg.innerHTML= `Valor da passagem escolhida: ${passagemU}`
+    } else if ( tipo == '1' && passagem == '2'){
+        div_msg.innerHTML= `Valor da passagem escolhida: ${passagemI}`
+    }
+ }
+
+    /*
+c) Ao clicar num botão "Simular preço", considere que o preço unitário de uma passagem única é R$4,40
+ e que a integração é R$5,90 para fazer os cálculos necessários para exibir uma frase como esta: 
+
+        Valor da passagem escolhida: R$X,XX 
+
+d) Considere ainda que um estudante tem 50% de desconto e 
+idoso/PNE possuem gratuidade em qualquer tipo de passagem 
+ 
+    */
+</script>

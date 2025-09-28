@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Preferências de Compras</title>
+</head>
+
+<body>
+    Insira tamanho da tela:
+    <input type="text" id="ipt_tamanho"> <br><br>
+    <select name="" id="select_cor">
+        <option value="#" selected disabled>Selecione uma opção</option>
+        <option value="1">Preto</option>
+        <option value="2">Prata</option>
+        <option value="3">Azul</option>
+        <option value="4">Vermelho</option>
+    </select>
+    <button onclick="avaliar()">Será que ele gosta?</button>
+    <div id="div_msg"></div><br>
+
+</body>
+
+</html>
+
+<script>
+    function avaliar() {
+        var tamanho = Number(ipt_tamanho.value)
+        var cor = select_cor.value
+        var triste = '<img src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRv2b3LPdcd02FQav3ef1SdPUj3djs_uusXQ&s">'
+        var contente = '<img src= "https://hypescience.com/wp-content/uploads/2014/01/1.jpg">'
+
+        if (tamanho > 6.5 && cor == '1' || tamanho > 6.5 && cor == '2') {
+            div_msg.innerHTML = ` <h2>Roberval is like: <h2> <br> <Br> 
+            ${contente}`
+        } else {
+            div_msg.innerHTML = ` <h2>Roberval is like: <h2> <br> <Br> 
+            ${triste}`
+        }
+
+    }
+
+    /*
+Robervaldo prefere celulares com tela grande (acima de 6.5 polegadas) e que sejam da cor preta ou prata.
+
+c) Ao clicar em "Será que ele gosta?", mostre, abaixo:
+
+    A imagem de uma pessoa feliz, caso as características do celular coincidam com as preferências de Robervaldo.
+    Ou a imagem de uma pessoa decepcionada, caso contrário.  
+
+*/
+</script>

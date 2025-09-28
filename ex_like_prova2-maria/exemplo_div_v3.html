@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <div id="div_pagina_1">
+      <input type="text">
+      <button onclick="proxima()">Próxima tela</button>
+   </div>   
+
+   <div id="div_pagina_2" style="display: none;">
+      <button onclick="voltar()">Voltar</button>
+   </div> 
+
+</body>
+</html>
+<script>
+
+   function proxima() {
+      div_pagina_1.style.display = "none";
+      div_pagina_2.style.display = "block";
+   }
+
+   function voltar() {
+      div_pagina_1.style.display = "block";
+      div_pagina_2.style.display = "none";
+   }
+
+</script>

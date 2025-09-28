@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de horas assistindo streaming</title>
+</head>
+<body>
+    Qual foi a ultima série que você assistiu? <br>
+    <input type="text" id="input_serie"> <br><Br>
+    Quantos episódios você assistiu? <br><Br>
+    <input type="text" id="input_episodios"> <br><Br>
+    <button onclick="verificar()">Verificar nível</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+<script>
+    function verificar(){
+        var serie = input_serie.value
+        var episodios = Number(input_episodios.value)
+        var totalAssistido = episodios * 22
+        if (totalAssistido <30 ) {
+            div_mensagem.innerHTML += ` Vejo que você gosta da série <b>${serie}</b> <br>
+            `
+        } else {
+        div_mensagem.innerHTML += ` Vejo que você gosta da série <b>${serie}</b> <br>
+        Uau, você realmente gosta dessa série!`
+        }
+    }
+</script>

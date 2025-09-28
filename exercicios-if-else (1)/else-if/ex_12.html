@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Representação do humor do usuário</title>
+</head>
+<body>
+    <select id="select_humor">
+<option selected disabled value="1">Selecione uma opção</option>
+<option value="1">Feliz</option>
+<option value="2">Triste</option>
+<option value="3">Bravo</option>
+<option value="4">Surpreso</option>
+<option value="5">Cansado</option>
+    </select>
+    <button onclick="verificar()">Mostrar Humor</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function verificar(){
+        var humor = select_humor.value
+        if (humor == 1) {
+            div_msg.innerHTML = `😊`
+        } 
+        if (humor == 2) {
+            div_msg.innerHTML = `😢`
+        }
+        if (humor == 3) {
+            div_msg.innerHTML = `😡`
+        }
+        if (humor == 4) {
+            div_msg.innerHTML = `😲`
+        }
+        if (humor == 5) {
+            div_msg.innerHTML = `😴`
+        }
+    }
+    /*"Feliz" → Exibir imagem de um emoji sorridente 😊
+"Triste" → Exibir imagem de um emoji chorando 😢
+"Bravo" → Exibir imagem de um emoji irritado 😡
+"Surpreso" → Exibir imagem de um emoji surpreso 😲
+"Cansado" → Exibir imagem de um emoji sonolento 😴*/
+</script>

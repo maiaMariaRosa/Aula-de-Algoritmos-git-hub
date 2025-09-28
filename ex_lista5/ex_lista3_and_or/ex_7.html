@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticação Melhorado</title>
+</head>
+
+<body>
+    Login:
+    <input type="text" id="ipt_login"> <br>
+    Senha:
+    <input type="password" id="ipt_senha"> <br>
+    informação pessoal:
+    <input type="password" id="ipt_info"> <br>
+    <br>
+    <button onclick="autenticar()">Autenticar</button>
+    <br><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    contadorA = 2
+    console.log(contadorA)
+
+    function autenticar() {
+        var login = ipt_login.value
+        var senha = ipt_senha.value
+        var info = ipt_info.value
+        if (login == 'ana' && senha == 'braga' && info == '1949') {
+            div_msg.innerHTML = `<span style="color:green"><b> Usuário autenticado </b></span>`
+        } else if (login == 'ana' && senha == 'braga' && info == 'louro josé') {
+            div_msg.innerHTML = `<span style="color:green"><b> Usuário autenticado </b></span>`
+        } else {
+            div_msg.innerHTML = `<b> Falha na autenticação </b> <br>
+            Você ainda tem ${contadorA} tentativa(s) `
+            contadorA -= 1
+            if (contadorA < 0) {
+                div_msg.innerHTML = `<b>  Usuário <span style="color: red"> BLOQUEADO! </span> 
+                    Procure seu gerente! </b>`
+                contadorA = 2
+                console.log(contadorA)
+            }
+        }
+    }
+    /*
+Melhore o exercício 4, de tal forma que: 
+
+a) Sempre que ocorrer uma falha na autenticação, deve aparecer abaixo da frase de "Falha de autenticação" 
+uma outra frase, como esta: 
+
+            Você ainda tem 2 tentativa(s) 
+
+b) A ideia é que o usuário tem 3 tentativas de autenticação. Sempre que errar novamente na autenticação, 
+o "contador" de tentativas reduz em 1 na tela. 
+
+c) Uma vez que se esgotarem as tentativas, deve surgir mais uma frase abaixo, que seria 
+
+     Usuário BLOQUEADO! Procure seu gerente! 
+
+d) Em caso de usuário bloqueado, não adianta nem tentar fazer uma autenticação com as credenciais corretas, 
+que nada mais acontecerá 
+
+e) Caso o usuário autentique com sucesso, sem que tenham sido queimadas as 3 tentativas, a mensagem de 
+autenticação aparece normalmente e a frase com a quantidade de tentativas deve sumir da tela e
+ deve ser "reiniciada" para as próximas falhas. 
+
+*/
+</script>

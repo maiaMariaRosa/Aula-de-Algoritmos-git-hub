@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super Jogo da Palavra Secreta</title>
+  </head>
+
+  <body>
+    <h2>Super Jogo da Palavra Secreta</h2>
+    <p>Palavra secreta definida! Descubra todos os XX caracteres!"</p>
+    <br />
+    <p>Insira uma letra por vez:</p>
+    <p><i>Dica: Vive na água e não lava o pé...</i></p>
+    <input
+      type="text"
+      id="ipt_letra"
+      placeholder="Apenas 1 letra por vez"
+      maxlength="1"
+    />
+    <br /><br />
+    <button onclick="verificar()" id="button_verificar">Verificar Letra</button>
+
+    <div id="div_msg"></div>
+  </body>
+</html>
+<script>
+  var total = 4;
+  var segredo = "sapo";
+
+  function verificar() {
+    var letra = ipt_letra.value;
+    var letraDiminutivo = letra.toLowerCase();
+
+    if (letraDiminutivo == "s") {
+      total -= 1;
+      console.log(total);
+      segredo = segredo.replace("s", "");
+      console.log(segredo);
+      div_msg.innerHTML = `O caractere ${letra} aparece na palavra secreta! Faltam ${total} caracteres`;
+    } else if (letraDiminutivo == "a") {
+      total -= 1;
+      console.log(total);
+      segredo = segredo.replace("a", "");
+      console.log(segredo);
+      div_msg.innerHTML = `O caractere <b> ${letra} </b> aparece na palavra secreta! Faltam ${total} caracteres`;
+    } else if (letraDiminutivo == "p") {
+      total -= 1;
+      console.log(total);
+      segredo = segredo.replace("p", "");
+      console.log(segredo);
+      div_msg.innerHTML = `O caractere <b> ${letra} </b> aparece na palavra secreta! Faltam ${total} caracteres`;
+    } else if (letraDiminutivo == "o") {
+      total -= 1;
+      console.log(total);
+      segredo = segredo.replace("o", "");
+      console.log(segredo);
+      div_msg.innerHTML = `O caractere <b> ${letra} </b> aparece na palavra secreta! Faltam ${total} caracteres`;
+    } else {
+      div_msg.innerHTML = `O caractere <b> ${letra} </b> não aparece na palavra secreta! Faltam ${total} caracteres`;
+    }
+
+    if (segredo == "") {
+      div_msg.innerHTML = `<style="background-color: green">Parabéns, você descobriu todas as letras da palavra SAPO!
+            <br>
+            <img src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF7OEVpIu7n9Wg7Hxjk9ew4gQ0eeKpkcCQVQ&s"> </style>
+            `;
+      ipt_letra.disabled = true;
+      button_verificar.disabled = true;
+    }
+  }
+</script>

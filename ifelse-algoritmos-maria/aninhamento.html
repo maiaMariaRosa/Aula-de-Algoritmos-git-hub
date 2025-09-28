@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aninhamento</title>
+</head>
+<body>
+    Digite um número <br><br>
+    <input type="text"  id="input_num"><br><br>
+
+    <button onclick="verificar()">Verificar</button>
+
+        <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+
+    function verificar() {
+        var num = Number(input_num.value)
+
+        if(num > 50) 
+        {
+            div_mensagem.innerHTML = `O número ${num} é maior que 50`
+            if (num > 75 ) 
+            {
+                div_mensagem.innerHTML += ` e também é maior que 75`
+            } 
+        } else
+            { div_mensagem.innerHTML = `O número ${num} é menor ou igual a 50`
+              if (num == 50) {
+            div_mensagem.innerHTML += `${num} é exatamente 50!`
+        }
+    }
+        if (num <= 25) {
+        div_mensagem.innerHTML += ` e também ${num} é menor que 25`
+     }
+    
+}
+    
+</script>

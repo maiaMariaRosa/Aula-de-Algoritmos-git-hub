@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Times Paulistas: O Canto da Sua Torcida!</title>
+</head>
+<body>
+    Qual seu time? <br><br>
+    <select id="select_times">
+        <option value="cor">Corinthians</option>
+        <option value="palm">Palmeiras</option>
+        <option value="san">Santos</option>
+        <option value="sp">São Paulo</option>
+        <option selected disabled value="6">Selecione um time</option>
+    </select>
+    <button onclick="falar()">Fale sobre esse time</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function falar(){
+        var times = select_times.value
+    if (times == 'cor'){
+        div_msg.innerHTML = `<span style="background-color:black"><span style="color:white">Salve o Corinthians </span></span>`
+    } else  if (times == 'palm'){
+        div_msg.innerHTML = `<span style="background-color:green"><span style="color:white">Salve o alviverde imponente </span></span>`
+    } else  if (times == 'san'){
+        div_msg.innerHTML = `<span style="background-color:white"><span style="color:black">Agora quem dá a bola é o Santos </span></span>`
+    }else  if (times == 'sp'){
+        div_msg.innerHTML = `<span style="background-color:black"><span style="color:red">Salve o Tricolor paulista </span></span>`
+    }
+}
+    /*Salve o Corinthians" -> com fundo preto e letra branca, se for Corinthians 
+   "Salve o alviverde imponente" -> com fundo verde e letra branca, se for Palmeiras 
+   "Agora quem dá a bola é o Santos" -> com fundo branco e letra preta, se for Santos 
+   "Salve o Tricolor paulista" -> com fundo preto e letra vermelha, se for São Paulo*/
+</script>

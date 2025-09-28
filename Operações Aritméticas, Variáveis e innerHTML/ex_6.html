@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota para atividade avaliativa</title>
+</head>
+<body>
+    Insira seu nome:
+    <input id="input_nome" type="text"></input> <br> <br>
+    Qual o valor da Atividade Avaliativa 1?
+    <input id="input_Avalia1" type="text"></input> <br>
+    Qual o valor da Atividade Avaliativa 2?
+    <input id="input_Avalia2" type="text"></input> <br>
+    Qual o valor da Atividade Avaliativa 3?
+    <input id="input_Avalia3" type="text"></input> <br>
+
+    <button onclick="button_nota()">Mostrar Nota</button> <br> <br>
+
+    <div id="div_nota"></div>
+
+</body>
+</html>
+<script>
+    function button_nota() {
+        var nome = input_nome.value
+        var Avalia1 = Number(input_Avalia1.value) 
+        var Avalia2 = Number(input_Avalia2.value)  
+        var Avalia3 = Number(input_Avalia3.value)   
+
+        div_nota.innerHTML = ` A soma das suas três atividades é: ${Avalia1 + Avalia2 + Avalia3 } 
+            , a média das suas atividades é: ${ (Avalia1 + Avalia2 + Avalia3) / 3} <br> <br>
+(OBS. ${nome} é o nome do aluno)`
+    }
+
+
+</script>

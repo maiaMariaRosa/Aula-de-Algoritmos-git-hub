@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Insira números de dias da TVM em operação:
+    <input id="input_diasOp" type="text"> <br><br>
+
+    <button onclick="calcular()">Processar DIAS</button> <br><Br>
+
+    <div id="div_mensagem"></div>
+   
+</body>
+</html>
+
+<script>
+var contador = 0
+var totalHoras = 1000
+var divMensagem = div_mensagem
+    function calcular() {
+        contador += 1
+        var dias = Number(input_diasOp.value); // 1
+        var horas = dias * 24; // 24
+        var horasGastas = totalHoras - horas; // 1000 - 24 => 976
+        
+        divMensagem.innerHTML += `<br> O TVM anterior era de ${totalHoras} horas, 
+            após ${dias} dias de operação o TVM passou para ${horasGastas} horas`
+
+        totalHoras = horasGastas; 
+    }
+
+</script>

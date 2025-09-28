@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auxílio Emergencial Covid-19</title>
+</head>
+<body>
+    Renda individual: <br><br>
+    <input type="text" name="" id="input_rendaI"><br><br>
+    Renda familiar: <br><br>
+    <input type="text" name="" id="input_rendaF"> <br><br>
+    <button onclick="avaliar()">Terei o benefício</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function avaliar(){
+        var rendaI = input_rendaI.value
+        var rendaF = input_rendaF.value
+
+        if ( rendaI <= 2000 || rendaF <=3000) {
+            div_msg.innerHTML = `Você terá direito ao auxílio`
+        } else {
+            div_msg.innerHTML = `Sem direito ao auxílio`
+        }
+    }
+/*
+ "Você terá direito ao auxílio", caso renda individual for até 2000 ou caso a renda familiar for até 3000 
+
+   "Sem direito ao auxílio", caso contrário
+*/
+</script>

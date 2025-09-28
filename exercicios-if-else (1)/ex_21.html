@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de frequência do aluno</title>
+</head>
+<body>
+    Insira frequência em aula:<br><br>
+    <input type="text" id="input_freq"><br><br>
+    <button onclick="analisar()">Analisar frequência</button>
+    <br><Br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function analisar(){
+        var frequencia = Number(input_freq.value)
+        if (frequencia < 50){
+            div_mensagem.innerHTML = `<h3> Tem que parar de viajar <h3>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8DcR1kolPRkI_yWj4XlfPIVZLc_tE5MwyZg&s">`
+        } else {
+             div_mensagem.innerHTML = `<h3> é isso aí! <h3>
+             <img src="https://media.istockphoto.com/id/508936229/pt/foto/computador-caixa-de-%C3%B3culos.jpg?s=612x612&w=is&k=20&c=_tGgKJ03S5vBy9wnU0ollO60amgcVk5LdjAsdPE6zj4=">`
+        }
+    }
+</script>

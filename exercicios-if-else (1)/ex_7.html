@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financiamento da Casa própria </title>
+</head>
+<body>
+    Valor da renda familiar: <br>
+    <input type="text" id="input_renda"> <br>
+    Valor da prestação: <br>
+    <input type="text" id="input_prestaçao"><br>
+    <button onclick="calcular()">Verificar financiamento</button> <br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function calcular() {
+        var renda = Number(input_renda.value);
+        var prestaçao = Number(input_prestaçao.value);
+        var percentual = prestaçao * 100 / renda;
+
+        if (percentual < 30 ) {
+            div_mensagem.innerHTML = ` A prestação corresponde a ${percentual}% da renda familiar `
+        } else {
+             div_mensagem.innerHTML = ` A prestação corresponde a ${percentual}% da renda familiar. <br>
+             <span style="color: red"> <b> Será necessário complementar a renda familiar  </b> </span>
+             `
+        }
+    }
+    /* renda - 100%
+        prestação - x
+
+        X = prestação * 100 / renda 
+        */
+</script>

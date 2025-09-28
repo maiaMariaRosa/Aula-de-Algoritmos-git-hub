@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de cansaço do aluno SPTech"</title>
+</head>
+
+<body>
+    <h2>Calculadora de cansaço do aluno SPTech"</h2>
+    Meio de transporte:<br>
+    <input type="text" name="" id="input_transporte" placeholder="carro,metro,bicicleta..."> <br><Br>
+    <input type="text" id="input_km"> Distância da faculdade (KM) <br><br>
+    <button onclick="calcular()">Calcular cansaço</button>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var transporte = input_transporte.value
+        var km = Number(input_km.value)
+
+        if (km > 10) {
+            if (transporte == 'carro') {
+                alert('É... um pouco cansado...')
+            } else if (transporte == 'metro' || transporte == 'onibus') {
+                alert('Bem cansado...')
+            } else if (transporte == 'bicicleta') {
+                alert('Vish... tá só o pó...')
+            } 
+            } else {
+                if (transporte == 'carro' || transporte == 'metro' || transporte == 'onibus') {
+                    alert('Tá tranks...')
+                }
+        }
+    }
+    /*
+    
+    e) Se a distância da faculdade for de ATÉ 10 KM: 
+    
+        SE o meio de transporte for "Carro" OU "Metrô" OU "Ônibus" exiba um alert com a frase ("Tá tranks..."). 
+    
+        SENÃO exiba um alert com a frase ("É... um pouco cansado..."). 
+    
+    f) Se a distância da faculdade for MAIOR que 10 KM: 
+    
+        SE o meio de transporte for "Carro" exiba um alert com a frase ("É... um pouco cansado..."); 
+    
+        SE o meio de transporte for "Metrô" OU "Ônibus" exiba um alert com a frase ("Bem cansado..."). 
+    
+        SE o meio de transporte for "Bicicleta" exiba um alert com a frase ("Vish... tá só o pó..."). 
+    
+    */
+</script>

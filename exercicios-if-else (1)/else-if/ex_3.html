@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sensação Térmica</title>
+</head>
+<body>
+    Temperatura atual: <br><br>
+    <input type="text" id="input_temp">
+    <br><br>
+    <button onclick="analisar()">Analisar temperatura</button><br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function analisar(){
+        var temp = Number(input_temp.value);
+        if (temp < 14 ){
+            div_mensagem.innerHTML = `Congelante`
+        } else if (temp > 14 ) {
+            div_mensagem.innerHTML = `Com Frio`
+            if (temp > 21){
+            div_mensagem.innerHTML = `Confortável`
+                if ( temp > 24){
+                div_mensagem.innerHTML = `Com Calor`
+                    if (temp > 31){
+                    div_mensagem.innerHTML = `Calor escaldante`
+                    }
+                }
+            }
+        }
+    }
+    /*Congelante (até menos de 14ºC) 
+
+Com Frio (entre 14ºC e 21ºC) 
+
+Confortável (mais de 21ºC até 24ºC) 
+
+Com Calor (mais de 24ºC até 31ºC) 
+
+Calor escaldante (mais de 31ºC) */
+</script>

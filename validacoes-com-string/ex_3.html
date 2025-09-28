@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeira e Última letra</title>
+</head>
+
+<body>
+    Insira uma frase:
+    <input type="text" id="input_frase"> <br>
+    <input type="text" id="input_palavra"> <br>
+    <button onclick="analisar()">Analisar Frase</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function analisar() {
+        var frase = input_frase.value
+        var palavra = input_palavra.value
+        var palavraFinal = frase.endsWith(palavra)
+        var palavraInicio = frase.startsWith(palavra)
+
+        console.log(palavraFinal)
+
+        if (palavraFinal && palavraInicio) {
+            div_msg.innerHTML = `A frase começa ${palavra} e termina com ${palavra}!`
+        } else if (palavraFinal) {
+            div_msg.innerHTML = `A frase termina com ${palavra}!`
+        } else if (palavraInicio) {
+            div_msg.innerHTML = `A frase começa com ${palavra}!`
+        } else {
+            div_msg.innerHTML = `A frase não começa ${palavra} e nem termina com ${palavra}!`
+        }
+    }
+
+</script>

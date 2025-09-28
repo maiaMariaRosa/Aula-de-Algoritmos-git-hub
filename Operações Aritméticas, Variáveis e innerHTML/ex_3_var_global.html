@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex_3 variavel global</title>
+</head>
+<body>
+    Valor recebido com a venda de peças
+    <input id="input_peças" type="text"></input>
+    Valor recebido com a venda de serviços
+    <input id="input_serviços" type="text"></input>
+    Valor percentual de imposto sobre os valores recebidos
+    <input id="input_imposto" type="text"></input>
+    Valor dos gastos realizados no mês 
+    <input id="input_gasto" type="text"></input>
+
+    <button onclick='acumular()'>Valor final</button>
+
+    <div id="div_final"></div>
+</body>
+</html>
+
+<script>
+var meses =0
+    function acumular() {
+        var peças = Number(input_peças.values)
+        var percentual = Number(input_serviços.values)
+        var imposto = Number(input_imposto.values)
+        var gasto = Number(input_gasto.values)
+
+        meses += 1
+
+        
+
+        div_final += Resumo do mês XX, Total recebido = R$ aaaaa,
+        aa – Valor do Imposto = R$ bbbb,bb – Saldo Final de R$ cccc,cc – Acumulado até o Momento = R$ dddd,dd
+    }
+
+
+</script>

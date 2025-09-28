@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fases do sono</title>
+</head>
+<body>
+    <h3>Fases do sono</h3> <br>
+    <div>
+    <h5>FASE 1 - Abrange 5% da noite </h5>
+É a transição entre vigília e o sono. Quando escurece,
+ocorre a liberação de melatonina, que induz a sonolência <br>
+
+    <h5>FASE 2 - Abrange 45% da noite </h5>
+Diminuem os ritmos cardíaco e respiratório, os da noite músculos 
+relaxam e a temperatura corporal baixa. É um sono leve, conhecido como 
+sono de conexão <br>
+
+    <h5>FASE 3 - Abrange 30% da noite </h5>
+Sono de ondas lentas. O corpo funciona mais da noite lentamente e o 
+metabolismo cai. O coração bate devagar e a respiração fica mais leve <br>
+
+    <h5>FASE REM - Abrange 20% da noite </h5>
+É o sono profundo, quando ocorrem os sonhos, que são fragmentos de memórias. 
+A pessoa tem descargas de adrenalina (causadas também por pesadelos), <br>
+há picos de batimentos cardíacos e pressão. Também se caracteriza por ser a fase 
+onde ocorrem os sonhos e de consolidação da memória e do aprendizado. <br>
+</div> <br>
+
+    Inserir horas dormidas: <br>
+    <input id="input_horas" type="text"> </input> <br>
+
+    <button onclick="calcular()">Calcular</button> <br>
+    <br>
+
+    <div id="div_MediaHoras"></div>
+
+</body>
+</html>
+
+<script>
+
+    function calcular() {
+        var horas = Number(input_horas.value)
+        div_MediaHoras.innerHTML = `Ao dormir ${horas} horas, você dormiu:  <br>
+
+    <b>${ ( horas * 5 ) / 100 }</b> horas na fase 1 <br> 
+
+    <b> ${ ( horas * 45 ) / 100 }</b> horas  na fase 2 <br>  
+
+    <b> ${ ( horas * 30 ) / 100 }</b> horas na fase 3 <br> 
+
+    <b> ${( horas * 20 ) / 100 }</b> horas na fase REM  `
+    }
+</script>

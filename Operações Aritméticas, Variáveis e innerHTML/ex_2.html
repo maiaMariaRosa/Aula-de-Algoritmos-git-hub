@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Aposentadoria</title>
+</head>
+<body>
+    <i>Insira sua idade:</i>
+    <input type="text" id="input_idade"></input> <br> <br>
+
+    <button onclick="aposentadoriaH()">Aposentadoria Homem</button>
+
+    <button onclick="aposentadoriaM()">Aposentadoria Mulher</button>
+
+    <div id='div_mensagem'> Quantos anos faltam para sua aposentadoria:</div>
+</body>
+</html>
+
+<script>
+    var AposentH = 70
+
+    var AposentM = 60
+
+    function aposentadoriaH() {
+        div_mensagem.innerHTML= `Para sua aposentadoria faltam ${ AposentH - Number(input_idade.value)} anos.`
+    } 
+    
+    function aposentadoriaM() {
+        div_mensagem.innerHTML= `Para sua aposentadoria faltam ${ AposentM - Number(input_idade.value)} anos.`
+    } 
+
+</script>

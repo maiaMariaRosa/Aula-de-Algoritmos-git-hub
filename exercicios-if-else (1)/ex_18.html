@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de divisibilidade</title>
+</head>
+<body>
+    Insira numero 1: <br>
+    <input type="text" id="input_num1"> <br>
+    Insira numero 2: <br>
+    <input type="text" id="input_num2"> <br>
+    <button onclick="testar()">Testar</button><br>
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+<script>
+    function testar(){
+    var num1 = Number(input_num1.value)        
+    var num2 = Number(input_num2.value)        
+    var resto = num1 % num2
+    if (resto == 0){
+        div_mensagem.innerHTML = `si
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp4XmK7Z2r2ptpDWUeRqR1anA28Dq8WSdwXg&s">`
+    }else {
+        div_mensagem.innerHTML = `nan 
+        <img src="https://previews.123rf.com/images/anawat/anawat2109/anawat210900096/173910745-man-hand-showing-thumb-down-sign-gesture-dislike-or-bad-concept-dark-tone.jpg">`
+    }
+
+
+    }
+</script>

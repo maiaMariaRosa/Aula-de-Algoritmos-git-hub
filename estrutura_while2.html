@@ -17,6 +17,10 @@
 </html>
 <script>
     function contar() {
+        var mensagem = 0
+        while (mensagem < 250) {
+            mensagem += ` <br> Contagem: ${++mensagem} <br>`
+        }
         /* var cont = 0
          while (cont < 100 ) {
          div_msg.innerHTML += `Contagem: ${++cont} <br>`;
@@ -27,9 +31,5 @@
             console.log(`Contagem: ${++i} <br>`)
             div_msg.innerHTML = `Contagem: ${i} <br>`
         }*/
-        var mensagem = 0
-        while (mensagem < 250) {
-            mensagem += ` <br> Contagem: ${++mensagem} <br>`
-        }
     }
 </script>

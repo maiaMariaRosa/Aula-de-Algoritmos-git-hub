@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diga algo sobre a matéria de Algoritmos</title>
+</head>
+<body>
+    <button onclick="diga()">Diga algo sobre a matéria de Algoritmos</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    var mensagem = 0
+    function diga() {
+        
+        while ( mensagem <7 ){
+        div_msg.innerHTML += `<Br>${++mensagem}. Algorítmos vai testar sua paciência.`
+        }
+    }
+</script>

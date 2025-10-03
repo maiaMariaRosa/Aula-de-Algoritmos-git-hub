@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senha forte</title>
+</head>
+
+<body>
+
+    <div>
+        Inserir senha: <br>
+        <input oninput="analisar()" type="text" id="ipt_senha">
+    </div>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<SCRipt>
+    function analisar() {
+        var senha = ipt_senha.value
+        senhaTamanho = senha.length
+        senhaG = senha.toUpperCase
+        senhaP = senha.toLowerCase
+
+        /*if (senhaTamanho >= 8 && senha == senhaG && senha == senhaP) {
+            div_msg.innerHTML = `Forte`
+        } else if (senha == senhaG && senhaTamanho >= 8 || senha == senhaP && senhaTamanho >= 8) {
+            div_msg.innerHTML = `Média`
+        } else if (senha == senhaP || senha == senhaG || senhaTamanho >= 8) {
+            div_msg.innerHTML = `Fraca`
+        } else if (senhaTamanho < 8 && senha != senhaG && senha != senhaP) {
+            div_msg.innerHTML = `Insegura`
+        } else {
+            div_msg.innerHTML = `Erro. A senha não pode ser apenas números ou apensa caracteres especiais`
+        }*/
+        if (senhaTamanho < 8 && senha != senhaG && senha != senhaP) {
+            div_msg.innerHTML = `Insegura`
+        } else if (senha == senhaG && senhaTamanho >= 8 || senha == senhaP && senhaTamanho >= 8) {
+            div_msg.innerHTML = `Média`
+        } else if (senha == senhaP || senha == senhaG || senhaTamanho >= 8) {
+            div_msg.innerHTML = `Fraca`
+        } else if (senhaTamanho >= 8 && senha == senhaG && senha == senhaP) {
+            div_msg.innerHTML = `Forte`
+        } else {
+            div_msg.innerHTML = `Erro. A senha não pode ser apenas números ou apensa caracteres especiais`
+        }
+    }
+    /*
+7. Senha Forte ou Fraca
+
+Crie um programa que:  
+
+a) Solicite uma senha ao usuário.  
+
+b) Enquanto o usuário digita, exiba a força da senha, com base nos critérios de segurança abaixo:
+
+    A senha deve conter ao menos 8 caracteres.
+    A senha deve conter 1 letra maiúscula.
+    A senha deve conter 1 letra minúscula.
+
+c) A força da senha é baseada em quantos critérios de segurança foram utilizados, com os níveis: 
+
+    "Forte" - atingiu todos os critérios de segurança
+    "Média" - atingiu 2 critérios de segurança
+    "Fraca" - atingiu 1 critério de segurança
+    "Insegura" - não atingiu nenhum critério de segurança
+
+OBS: utilize .toUpperCase() e .toLowerCase() para validar manipular a String e comparar se possui as letras maiúsculas e minúsculas.
+Como você poderia usar esses métodos para comparar se possui uma letra maiúscula ou minúscula? - Depende da sua lógica!
+
+OBS2: caso a senha seja um conjunto de apenas números ou caracteres especiais, não deve passar nas validações de "1 letra maiúscula" e "1 letra minúscula".
+*/
+</SCRipt>

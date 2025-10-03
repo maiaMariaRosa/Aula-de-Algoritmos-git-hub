@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doceria Gourmet</title>
 </head>
+
 <body>
     <div>
         Qual opção de doce você deseja?
@@ -24,78 +26,97 @@
     <div id="div_msg"></div>
     <div id="div_resultado"></div>
 </body>
+
 </html>
 <script>
     var contador = 0;
+    //Imagens
     var imgMaca = '<img style="width: 80px" src="https://images.stockcake.com/public/2/6/5/2657497e-2a4f-4ff8-b228-9c092d84a22f_medium/colorful-macaron-pile-stockcake.jpg">';
     var imgBri = '<img style="width: 80px" src="https://www.oitedi.com.br/_next/image?url=https%3A%2F%2Ftedi-production.s3.amazonaws.com%2Fcooking_recipes%2Ffood_description%2F4b9d69cca10e5a7a87c8cb5153dd6ca1b31a710f.png&w=1080&q=70">';
     var imgCup = '<img style="width: 80px" src="https://cakemehometonight.com/wp-content/uploads/2020/08/Confetti-Cupcakes-19.jpg">';
     var imgCheese = '<img style="width: 80px" src="https://www.receiteria.com.br/wp-content/uploads/cheesecake-de-morango-facil.jpeg">';
+
+    // valores das inputs
     var doce = select_doces.value;
     var unidades = Number(ipt_unidades.value);
     var valor = Number(ipt_valor.value);
+
+    // unidades dos doces
     var macarron1 = 0;
     var brigadeiro2 = 0;
     var cupcakes3 = 0;
     var cheesecakes4 = 0;
+    
+    // valor dos doces
     var macValor = 0;
-   // console.log(macValor)
     var briValor = 0;
-   // console.log(briValor)
     var cupValor = 0;
-    //console.log(cupValor)
     var cheeseValor = 0;
-   // console.log(cheeseValor)
+
+    // valor total dos doces
     var macValorTotal = 0;
     var briValorTotal = 0;
     var cupValorTotal = 0;
     var cheeseValorTotal = 0;
     var valorTotal = 0;
     var numVenda = 0;
+
     function verificar() {
-        
-        if (valor <= 0 && doce == '#' ) {
+
+        unidades = Number(ipt_unidades.value)
+
+        if (valor <= 0 && doce == '#') {
             div_msg.innerHTML = `<br> <span style="color: red"><b>Erro!</b> Os valores precisam ser maiores do que 0</span>`
         } else if (doce == '1') {
             macarron1 += unidades
             macValor += valor
             macValorTotal += macValor * macarron1
+            valorTotal += macValorTotal + briValorTotal + cupValorTotal + cheeseValorTotal;
             div_msg.innerHTML = `<b>NÚMERO DA VENDA: ${numVenda}</b>
         <br> <b>IMAGEM DO DOCE:</b><br> ${imgMaca}   
         <br> <span style="color: #F51F8D"><b>VALOR UNITÁRIO:</b></span> <br> R$${macValor}
+                <br> <br>
+        Com a quantidade de ${macarron1} Macarons, ${brigadeiro2} Brigadeiros, ${cupcakes3} Cupcakes e ${cheesecakes4} Cheesecakes, a venda totalizará R$${valorTotal}
         `
         } else if (doce == '2') {
             brigadeiro2 += unidades
             briValor += valor
             briValorTotal += briValor * brigadeiro2
+            valorTotal += macValorTotal + briValorTotal + cupValorTotal + cheeseValorTotal;
             div_msg.innerHTML = `<b>NÚMERO DA VENDA: ${numVenda}</b>
         <br> <b>IMAGEM DO DOCE:</b> <br> ${imgBri}   
         <br> <span style="color: #F51F8D"><b>VALOR UNITÁRIO:</b></span> <br> R$${briValor}
+                <br> <br>
+        Com a quantidade de ${macarron1} Macarons, ${brigadeiro2} Brigadeiros, ${cupcakes3} Cupcakes e ${cheesecakes4} Cheesecakes, a venda totalizará R$${valorTotal}
         `
         } else if (doce == '3') {
             cupcakes3 += unidades
             cupValor += valor
             cupValorTotal += cupValor * cupcakes3
+            valorTotal += macValorTotal + briValorTotal + cupValorTotal + cheeseValorTotal;
             div_msg.innerHTML = `<b>NÚMERO DA VENDA: ${numVenda}</b>
         <br> <b>IMAGEM DO DOCE:</b> <br> ${imgCup}   
         <br> <span style="color: #F51F8D"><b>VALOR UNITÁRIO:</b></span> <br> R$${cupValor}
+                <br> <br>
+        Com a quantidade de ${macarron1} Macarons, ${brigadeiro2} Brigadeiros, ${cupcakes3} Cupcakes e ${cheesecakes4} Cheesecakes, a venda totalizará R$${valorTotal}
         `
         } else if (doce == '4') {
             cheesecakes4 += unidades
             cheeseValor += valor
             cheeseValorTotal += cheeseValor * cheesecakes4
-            console.log(cheeseValor)
+            //console.log(cheeseValor)
+            valorTotal += macValorTotal + briValorTotal + cupValorTotal + cheeseValorTotal;
             div_msg.innerHTML = `<b>NÚMERO DA VENDA: ${numVenda}</b>
         <br> <b>IMAGEM DO DOCE:</b> <br> ${imgCheese}   
         <br> <span style="color: #F51F8D"><b>VALOR UNITÁRIO:</b></span> <br> R$${cheeseValor}
+                <br> <br>
+        Com a quantidade de ${macarron1} Macarons, ${brigadeiro2} Brigadeiros, ${cupcakes3} Cupcakes e ${cheesecakes4} Cheesecakes, a venda totalizará R$${valorTotal}
         `
         }
-        valorTotal = macValorTotal + briValorTotal + cupValorTotal + cheeseValorTotal
-        //console.log(macValorTotal) 
-        console.log(briValorTotal)
-        console.log(cupValorTotal)
-        console.log(cheeseValorTotal)
-        div_resultado.innerHTML = `Com a quantidade de ${macarron1} Macarons, ${brigadeiro2} Brigadeiros, ${cupcakes3} Cupcakes e ${cheesecakes4} Cheesecakes, a venda totalizará ${valorTotal}`
-        
+
+        console.log(macValorTotal) ;
+        console.log(briValorTotal);
+        console.log(cupValorTotal);
+        console.log(cheeseValorTotal);
     }
 </script>

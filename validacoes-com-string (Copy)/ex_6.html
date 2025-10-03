@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observador de Índices</title>
+</head>
+
+<body>
+    <div>
+        Insira uma frase: <br>
+        <input type="text" id="ipt_frase"> <br>
+        Qual palavra deseja analisar? <br>
+        <input type="text" id="ipt_palavra"> <br>
+        Qual letra encontrar deseja analisar? <br>
+        <input oninput="analisar()" type="text" id="ipt_letra"> <br>
+    </div>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function analisar() {
+        var frase = ipt_frase.value
+        var numLetra = ipt_letra.value
+        var verLetra = frase[numLetra.length - 1]
+        letra = 
+        div_msg.innerHTML = `A primeira letra é: ${frase[0]} <br>
+    A ${numLetra}ª letra é: ${verLetra} <br>
+    A última letra é: ${frase[frase.length - 1]} <br> `
+    } 
+</script>

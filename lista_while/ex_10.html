@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intervalor S2</title>
+</head>
+
+<body>
+    <div>
+        Início do intervalo:
+        <input type="text" id="ipt_i">
+        Final do intervalo:
+        <input type="text" id="ipt_f">
+    </div>
+    <button onclick="pares()">S2 Pares</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function pares() {
+        var cont = 0
+        var inicio = Number(ipt_i.value)
+        var final = Number(ipt_f.value)
+        var mensagem = ''
+        
+        while (cont >= inicio && cont <= final) {
+            mensagem += `<br> ${cont}`
+            ++cont
+            var resto = cont % 2
+        }
+        if (resto == 0) {
+            div_msg.innerHTML += mensagem + ' s2 s2 s2 s2'
+        }
+    }
+    /*
+
+Crie um programa o qual:
+
+a) Solicite um intervalo crescente de valores numéricos    
+
+b) Ao clicar num botão "S2 Pares"...   
+
+c) Exiba, debaixo do botão, todos os números pares contidos no intervalo.  */
+</script>

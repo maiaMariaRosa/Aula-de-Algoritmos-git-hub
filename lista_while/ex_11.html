@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuada Colorida</title>
+</head>
+
+<body>
+    <p>Escolha uma tabuada</p>
+    <select id="select_tab">
+        <option value="" id="#">Selecione uma opção</option>
+        <option value="" id="1">1</option>
+        <option value="" id="2">2</option>
+        <option value="" id="3">3</option>
+        <option value="" id="4">4</option>
+        <option value="" id="5">5</option>
+        <option value="" id="6">6</option>
+        <option value="" id="7">7</option>
+        <option value="" id="8">8</option>
+        <option value="" id="9">9</option>
+        <option value="" id="10">10</option>
+        <option value="" id="11">11</option>
+        <option value="" id="12">12</option>
+    </select>
+    <button onclick="calcular()">Ver Tabuada</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        cont = 0
+        var tabuada = Number(select_tab.value)
+        var mensagem = ''
+
+        while (cont < 12) {
+            cont += tabuada
+            mensagem += ` <span style="color: red">${tabuada} x 1 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: blue">${tabuada} x 2 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: red">${tabuada} x 3 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: blue">${tabuada} x 4 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: red">${tabuada} x 5 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: blue">${tabuada} x 6 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: red">${tabuada} x 7 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: blue">${tabuada} x 8 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: red">${tabuada} x 9 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: blue">${tabuada} x 11 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: red">${tabuada} x 10 = ${cont}</span>`
+            mensagem += ` <br> <span style="color: blue">${tabuada} x 12 = ${cont}</span>`
+        }
+        div_msg.innerHTML += mensagem
+
+    }
+    /*
+Crie um programa o qual:
+
+a) Pergunte, numa input ou lista suspensa (select/option), qual a tabuada que o usuário quer ver na tela (2 a 9);  
+
+b) Pergunte até que número a tabuada deve ser construída;  
+
+c) Ao clicar no botão “Ver Tabuada”, exiba abaixo a tabuada como neste exemplo (considerando que o usuário escolheu a tabuada do 3 e para ir até o 12).  
+*/
+</script>

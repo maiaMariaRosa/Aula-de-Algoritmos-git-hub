@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Papagaio</title>
+    <title>papagaio Repetitivo</title>
 </head>
+
 <body>
     <div>
         Insira um número: <br>
@@ -14,33 +16,36 @@
     </div>
     <div id="div_msg"></div>
     <br>
-    <button onclick="falar()">Papagaio</button>
+    <button onclick="falar()">Papagaio Repetitivo</button>
 </body>
-</html>
 
+</html>
 <script>
-    function falar(){
+    function falar() {
         cont = 0
         var frase = ipt_frase.value
         var numero = Number(ipt_num.value)
 
         while (cont < numero) {
             ++cont
-            alert(`${frase}`)
+            div_msg.innerHTML += ` <br>${cont} - ${frase}`
         }
     }
     /*
+13. Papagaio Repetitivo
 
 Crie um programa o qual:
 
 a) Pergunte ao usuário um número  
 
-b) Pergunte ao usuário uma frase  
+b) Pergunte ao usuário uma frase
 
-c) Ao clicar num botão "Papagaio", a frase é exibida N vezes em N alerts, onde N é o número informado em a)
+c) Ao clicar num botão "Papagaio Repetitivo", repita a frase informada, exibindo o número da frase atual e a frase repetida a cada fala, como abaixo: 
 
-OBS: ao digitar "oi" e "2", devem aparecer 2 alertas, escritos "oi oi"
-
-OBS2: utilize a tecla "enter" ao invés de clicar com o mouse para fechar o alerta, garantindo um melhor funcionamento para testar a quantidade de alertas.
+     1 - oi
+     2 - oi oi
+     3 - oi oi oi
+     4 - oi oi oi oi
+     ... última frase, repetindo N vezes a frase
 */
 </script>

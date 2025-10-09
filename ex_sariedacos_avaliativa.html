@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sari Edacos</title>
+</head>
+
+<body>
+    <div id="div_paginaParametros" div_paginaParametros.style.display="block">
+        Inserir parâmetro inicial do salário do funcionário:
+        <input type="text" id="ipt_salarioInicial" placeholder="Acima de R$3000"> <br>
+        Inserir parâmetro final do salário do funcionário:
+        <input type="text" id="ipt_salarioFinal" placeholder="Valor acima do salário inicial"> <br>
+        Inserir mês corrente:
+        <select name="" id="select_meses">
+            <option value="0" selected disabled>Selecione uma opção</option>
+            <option value="1">Janeiro</option>
+            <option value="2">Fevereiro</option>
+            <option value="3">Março</option>
+            <option value="4">Abril</option>
+            <option value="5">Maio</option>
+            <option value="6">Junho</option>
+            <option value="7">Julho</option>
+            <option value="8">Agosto</option>
+            <option value="9">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+        </select>
+        <br>
+        <br>
+        <button onclick="registrar()">Resgistrar Parâmetros</button>
+        <div id="div_erro1"></div>
+    </div>
+
+    <div id="div_pagarSalario" div_pagarSalario.style.display="none">
+        Inserir nome do funcionário:
+        <input type="text" id="ipt_nome"> <br>
+        Inserir salário do funcionário:
+        <input type="text" id="ipt_salarioFuncionario"> <br>
+        Qual cadeira gostaria de comprar?
+        <select name="" id="select_cadeira">
+            <option value="100" selected disabled>Selecione uma opção</option>
+            <option value="101">Cadeira de Praia</option>
+            <option value="102">Cadeira de Jardim</option>
+            <option value="103">Cadeira de Pesca</option>
+        </select> <br>
+        Quantidade:
+        <input type="text" id="ipt_quantidade">
+
+        <button onclick="pagar()">Pagar Salário</button>
+    </div>
+
+    <div id="div_pagExtrato" div_Extrato.style.display="none"></div>
+</body>
+
+</html>
+<script>
+    // Parâmetros de salário
+    var salarioFinal = 0;
+    var salarioFinal = 0;
+    var meses = 0;
+
+    // Info do funcionário
+    var nome = '';
+    var salarioFuncionario = 0;
+    var salarioLiquido = 0
+
+    // Quantidades e valores das cadeiras
+    var qtCadPraia = 0;
+    var qtCadJardim = 0;
+    var qtCadPesca = 0;
+
+    var valorCadPraia = 0;
+    var valorCadJardim = 0;
+    var valorCadPesca = 0;
+
+    var totalCadPraia = 0;
+    var totalCadJardim = 0;
+    var totalCadPesca = 0;
+
+    // Valor conta final
+    var valorCompraFinal = 0;
+    var valorFinalDesconto = 0;
+
+    function pagar() {
+        nome = ipt_nome.value;
+        salarioFuncionario = Number(ipt_salarioFuncionario.value);
+
+        var tipoCadeira = select_cadeira.value
+
+        if (nome != '' || salarioFuncionario > 0 || qtCadJardim > 0 || qtCadPesca > 0 || qtCadPraia > 0 || tipoCadeira != '100') {
+
+            if (tipoCadeira == '101' /* Cadeira de Praia */) {
+                qtCadPraia += Number(ipt_quantidade.value);
+                valorCadPraia += 100;
+
+                // Primeiro desconto
+
+                totalCadPraia += valorCadPraia * qtCadPraia;
+                valorCompraFinal += totalCadPraia + totalCadJardim + totalCadPesca;
+
+                // Segundo desconto
+                if (valorCadJardim > valorCadPraia && valorCadJardim > valorCadPesca) {
+                    valorFinalDesconto += valorCompraFinal * 5.5 / 100;
+                }
+
+                // Aceite da compra
+                var percentualVenda = valorCompraFinal * 100 / salarioFuncionario;
+
+                if (salarioFuncionario < salarioFinal && percentualVenda < 30.5) {
+                    //Emitir extrato
+                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
+                    Nome: ${nome} <br>
+                    Salário: ${salarioFuncionario} <br>
+                    Salário Líquido: ${salarioLiquido} <br> <br>
+                    Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
+                    Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
+                    Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
+                    `
+                } else if (salarioFuncionario > salarioFinal && percentualVenda < 20.75) {
+                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
+                    Nome: ${nome} <br>
+                    Salário: ${salarioFuncionario} <br>
+                    Salário Líquido: ${salarioLiquido} <br> <br>
+                    Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
+                    Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
+                    Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
+                    `
+                }
+
+                if (valorFinalDesconto > 0) {
+                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}
+                    Valor final com desconto adicional: ${valorFinalDesconto}`
+                    salarioLiquido += salarioFuncionario - valorFinalDesconto;
+
+                } else {
+                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}`
+                    salarioLiquido += salarioFuncionario - valorCompraFinal;
+                }
+            }
+            else if (tipoCadeira == '102' /* Cadeira de Jardim */) {
+                qtCadPesca += Number(ipt_quantidade.value);
+                valorCadJardim += 120;
+
+                // Primeiro desconto
+                if (meses >= 1 || meses <= 5 || mesese >= 10 || mes <= 12) {
+                    valorCadJardim += valorCadJardim * 7.2 / 100
+                }
+
+                totalCadJardim += valorCadJardim * qtCadJardim;
+
+                valorCompraFinal += totalCadPraia + totalCadJardim + totalCadPesca;
+
+                // Segundo desconto
+                if (valorCompraFinal > 400 && qtCadPraia < 1 || qtCadPesca > 1) {
+                    valorFinalDesconto += valorCompraFinal * 2.5 / 100;
+                }
+                if (valorCadJardim > valorCadPraia && valorCadJardim > valorCadPesca) {
+                    valorFinalDesconto += valorCompraFinal * 5.5 / 100;
+                }
+
+                // Aceite da compra
+                var percentualVenda = valorCompraFinal * 100 / salarioFuncionario;
+
+                if (salarioFuncionario < salarioFinal && percentualVenda < 30.5) {
+                    //Emitir extrato
+                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
+        Nome: ${nome} <br>
+        Salário: ${salarioFuncionario} <br>
+        Salário Líquido: ${salarioLiquido} <br> <br>
+        Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
+        Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
+        Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
+        `
+                } else if (salarioFuncionario > salarioFinal && percentualVenda < 20.75) {
+                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
+                    Nome: ${nome} <br>
+                    Salário: ${salarioFuncionario} <br>
+        Salário Líquido: ${salarioLiquido} <br> <br>
+        Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
+        Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
+        Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
+        `
+                }
+
+                if (valorFinalDesconto > 0) {
+                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}
+                    Valor final com desconto adicional: ${valorFinalDesconto}`
+                    salarioLiquido += salarioFuncionario - valorFinalDesconto;
+                } else {
+                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}`
+                    salarioLiquido += salarioFuncionario - valorCompraFinal;
+                }
+            }
+            else if (tipoCadeira == '103' /* Cadeira de Pesca */) {
+                qtCadJardim += Number(ipt_quantidade.value);
+                valorCadPesca += 80
+                // Primeiro desconto
+
+                if (meses >= 4 || meses <= 10 || qtPesca > 3) {
+                    valorCadPesca += valorCadPesca * 6.09 / 100
+                }
+
+                totalCadPesca += valorCadPesca * qtCadPesca;
+
+                valorCompraFinal += totalCadPraia + totalCadJardim + totalCadPesca;
+
+                // Segundo desconto
+                if (valorCompraFinal > 400 && qtCadPraia < 1 || qtCadPesca > 1) {
+                    valorFinalDesconto += valorCompraFinal * 2.5 / 100;
+                }
+                if (valorCadJardim > valorCadPraia && valorCadJardim > valorCadPesca) {
+                    valorFinalDesconto += valorCompraFinal * 5.5 / 100;
+                }
+
+                // Aceite da compra
+                var percentualVenda = valorCompraFinal * 100 / salarioFuncionario;
+
+                if (salarioFuncionario < salarioFinal && percentualVenda < 30.5) {
+                    //Emitir extrato
+                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
+        Nome: ${nome} <br>
+        Salário: ${salarioFuncionario} <br>
+        Salário Líquido: ${salarioLiquido} <br> <br>
+        Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
+        Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
+        Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
+        `
+                } else if (salarioFuncionario > salarioFinal && percentualVenda < 20.75) {
+                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
+        Nome: ${nome} <br>
+        Salário: ${salarioFuncionario} <br>
+        Salário Líquido: ${salarioLiquido} <br> <br>
+        Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
+        Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
+        Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
+        `
+                }
+
+                if (valorFinalDesconto > 0) {
+                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}
+                    Valor final com desconto adicional: ${valorFinalDesconto}`
+                    salarioLiquido = salarioFuncionario - valorFinalDesconto;
+                } else {
+                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}`
+                    salarioLiquido = salarioFuncionario - valorCompraFinal;
+                }
+            }
+        }
+    }
+    function registrar() {
+        salarioInicial = Number(ipt_salarioInicial.value);
+        salarioFinal = Number(ipt_salarioFinal.value);
+        meses = Number(select_meses.value);
+
+        if (salarioInicial < 3000 || salarioFinal > (salarioInicial * 4) || meses == '0') {
+            div_erro1.innerHTML = `<br> <span style="color: red">O parâmetro do salário inicial precisa ser acima de R$3000. <br>
+            O parâmetro do salário final precisa ser acima do valor do salário inicial. <br>
+            O mês corrente deve estar selecionado.</span>`;
+        } else {
+            document.getElementById('div_paginaParametros').style.display = "none";
+            document.getElementById('div_pagarSalario').style.display = "block";
+        }
+    }
+</script>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voltas de carro</title>
+</head>
+<body>
+    <div>
+        <p>Quantas voltas de carro você dará numa corrida?</p>
+        <input type="text" id="ipt_voltas">
+        <button onclick="iniciar()">Iniciar corrida!</button>
+    </div>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    var cont = 0
+    function iniciar() {
+        var voltas = ipt_voltas.value
+        while (cont < voltas) {
+            cont = ++cont
+            div_msg.innerHTML += `<br> Carro dando a ${cont}ª volta`
+        }
+        if (cont == voltas) {
+            div_msg.innerHTML += ` <br> <br>Corrida finalizada! <br>`
+            cont = 0
+        }
+    }
+</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisores</title>
+</head>
+<body>
+    <div>
+        Insira um número: <br>
+        <input type="text" placeholder="De 1 a 100" id="ipt_num"> <br>
+    </div>
+    <button onclick="calcular()">Ver Divisores</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function calcular() {
+        var cont = 0
+        var num = Number(ipt_num.value)
+
+        while ( cont < 100) {
+            cont++
+            var resto = num%cont
+            if ( resto == 0 ){
+                div_msg.innerHTML += `<br> ${cont}`
+            } else {
+                div_msg.innerHTML += ``
+            }
+        } 
+    }
+
+    /*18. Divisores
+
+Crie  um programa o qual:
+
+a) Receba um número do usuário, que deve estar entre 0 e 100;
+
+b) Ao clicar no botão "Ver Divisores", deve exibir na tela, abaixo do botão, todos os divisores do número informado, como o exemplo abaixo, onde o usuário inseriu o número "10": 
+
+     Divisores do Número 10:
+
+     1
+
+     2
+
+     5
+
+     10*/
+</script>

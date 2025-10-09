@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisibilidade</title>
+</head>
+
+<body>
+    <div>
+        Insira valor de contagem inicial: <br>
+        <input type="text" id="ipt_inicio"><br>
+        Insira valor de contagem final: <br>
+        <input type="text" id="ipt_final"> <br>
+        Insira um número para fazer o teste de divisibilidade: <br>
+        <input type="text" id="ipt_num"> <br>
+
+        <button onclick="calcular()">Divisível</button>
+    </div>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var inicio = Number(ipt_inicio.value)
+        var final = Number(ipt_final.value)
+        var num = Number(ipt_num.value)
+        var cont = inicio
+        
+        while (cont < final) {
+            if (inicio < final) {
+                ++cont
+                var resto = cont % num
+                if (resto != 0) {
+                    div_msg.innerHTML += `<br> ${cont} Não é divisível por ${num}`
+                } else {
+                    div_msg.innerHTML += ``
+                }
+            }
+        }
+    }
+    /*17.
+
+Crie um programa o qual:
+
+a) Solicite um intervalo crescente de valores numéricos
+
+b) Solicite um número para teste de divisibilidade, ele tem que estar entre 3 e 13   
+
+c) Ao clicar num botão "Divisível"...   
+
+c) Exiba, debaixo do botão, todos os números contidos no intervalo do item a que NÃO são divisíveis pelo número do item b.  */
+</script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intervalor S2</title>
+    <title>É tri/penta</title>
 </head>
 
 <body>
@@ -14,35 +14,30 @@
         Final do intervalo:
         <input type="text" id="ipt_f">
     </div>
-    <button onclick="pares()">S2 Pares</button>
+    <button onclick="calcular()">Curto 3 e 5!</button>
     <div id="div_msg"></div>
 </body>
 
 </html>
 <script>
-    function pares() {
+    function calcular() {
         var inicio = Number(ipt_i.value)
-        console.log(inicio)
         var final = Number(ipt_f.value)
-        console.log(final)
         var cont = inicio
-        
+
         while (cont >= inicio && cont <= final) {
-            ++cont
-            var resto = cont%2
-            if (resto == 0) {
-                div_msg.innerHTML += ` <br> ${cont}`
-            }
+            cont += 1
+            resto3 = cont % 3
+            resto5 = cont % 5
+
+            if (resto3 == 0) {
+            div_msg.innerHTML += `<br> É TRI!`
+        } else if (resto5 == 0) {
+            div_msg.innerHTML += `<br> É PENTA!`
+        } else {
+            div_msg.innerHTML += `<br> ${cont}`
+        }
         }
         
     }
-    /*
-
-Crie um programa o qual:
-
-a) Solicite um intervalo crescente de valores numéricos    
-
-b) Ao clicar num botão "S2 Pares"...   
-
-c) Exiba, debaixo do botão, todos os números pares contidos no intervalo.  */
 </script>

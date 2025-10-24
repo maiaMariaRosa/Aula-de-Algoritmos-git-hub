@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codificador Maluco</title>
+</head>
+<body>
+     <div>
+        Insira uma frase: <br>
+        <input type="text" id="ipt_frase"> <br><br>
+        
+        <button onclick="codificar()">Codificar</button> <br><br>
+        <div id="div_msg"></div>
+    </div>
+</body>
+</html>
+<script>
+    function codificar() {
+        var fraseInicial = ipt_frase.value;
+        var fraseMinuscula = fraseInicial.toLowerCase();
+        var tamanho = fraseInicial.length;
+
+        var tamanhoManipulado = fraseMinuscula.length;
+        var fraseManipulada = fraseMinuscula
+        var cont = 0;
+        var fraseCriptografada = '';
+
+        for(var i = 0; i < fraseManipulada.length; i++){
+            if(fraseManipulada[i]=='a'){
+                fraseCriptografada += '1'
+            } else if(fraseManipulada[i]=='e'){
+                fraseCriptografada += '2'
+            } else if(fraseManipulada[i]=='i'){
+                fraseCriptografada += '3'
+            } else if(fraseManipulada[i]=='o'){
+                fraseCriptografada += '4'
+            } else if(fraseManipulada[i]=='u'){
+                fraseCriptografada += '5'
+            } else{
+                fraseCriptografada += fraseManipulada[i]
+            }
+        }
+
+
+        div_msg.innerHTML = `Frase: ${fraseCriptografada} <br> <br>`
+
+        if (tamanho%2 == 0){
+            div_msg.innerHTML += `<span style="color: #fc037b"> #par </span> <br>`
+        } else {
+            div_msg.innerHTML += `<span style="color: #46f4fa"> #impar </span> <br>`
+        }
+    }
+
+    /*
+b) Ao clicar em "Codificar", o programa deve:
+
+    Substituir todas as vogais por números (a=1, e=2, i=3, o=4, u=5).
+
+    Contar quantos caracteres totais existem na frase (length).
+
+    Se o total for par, acrescente ao final da frase “#par”; se for ímpar, acrescente “#impar”.
+
+c) Exiba o resultado final abaixo do botão.
+
+OBS: proibido utilizar replace, utilize estruturas de repetição para percorrer a string.*/
+</script>

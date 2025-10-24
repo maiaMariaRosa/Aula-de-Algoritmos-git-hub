@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Vogais com Emoção</title>
+</head>
+
+<body>
+    <div>
+        Insira uma frase: <br>
+        <input type="text" id="ipt_frase"> <br><br>
+        <button onclick="contar()">Contar Vogais</button> <br><br>
+        <div id="div_msg"></div>
+    </div>
+</body>
+
+</html>
+<script>
+    function contar() {
+        var frase = ipt_frase.value;
+        var fraseSemEspaço = frase.replaceAll(' ', '');
+        var tamanho = fraseSemEspaço.length;
+
+        // variaveis para contagem de vogais
+        var letrasCaixaBaixa = frase.toLowerCase()
+        var contLetras = letrasCaixaBaixa.replaceAll(' ', '');
+        var fraseTamanho = contLetras.length;
+        var contVogais = 0;
+
+        for ( var i = 0; i < fraseTamanho ; i++ ){
+            if (contLetras[i]=='a'){
+                contVogais++;
+            } else if (contLetras[i]=='e'){
+                contVogais++;
+            } else if (contLetras[i]=='i'){
+                contVogais++;
+            } else if (contLetras[i]=='o'){
+                contVogais++;
+            } else if (contLetras[i]=='u'){
+                contVogais++;
+            }
+        }
+        
+        div_msg.innerHTML += `A frase possui um total de ${tamanho} letras e ${contVogais} vogais. <br>`
+
+        if ( fraseSemEspaço.endsWith('!') ) {
+            div_msg.innerHTML += `A frase é uma afirmação! <br>`
+        } else if ( fraseSemEspaço.endsWith('?') ) {
+            div_msg.innerHTML += `A frase é uma pergunta! <br>`
+        }
+
+    }
+</script>

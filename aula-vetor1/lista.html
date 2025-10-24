@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Nome:
+    <input type="text" id="ipt_nome"> <br>
+    <button onclick="cadastrar()">cadastrar</button> <br> <Br>
+    <div id="div_msg"></div>
+</body>
+</html>
+
+<script>
+    var lista = []; // new array()
+    // var lista = new Array ()
+    cont = 0
+    
+    function cadastrar() {
+        // lista [lista.length] = nome; 
+        var nome = ipt_nome.value;
+        lista.push(nome);
+        var tamanhoVetor = lista.length
+        var mensagem = `Tamanho da lista: ${tamanhoVetor} <br>`
+        
+        while ( cont < tamanhoVetor) {
+            var itemAtual = lista[cont];
+            mensagem += `${cont}º ${itemAtual}`
+            cont++
+        }
+        div_msg.innerHTML += `${mensagem} <br> <br>`
+    }
+</script>

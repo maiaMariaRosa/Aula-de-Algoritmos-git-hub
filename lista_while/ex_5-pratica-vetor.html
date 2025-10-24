@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        Insira uma frase: <br>
+        <input type="text" id="ipt_frase"> <br><br>
+        Insira uma letra a ser procurada: <br>
+        <input type="text" id="ipt_letra"> <Br><br>
+        <button onclick="procurar()">Revelar Índices</button> <br><br>
+        <div id="div_msg"></div>
+    </div>
+</body>
+
+</html>
+<script>
+    function procurar() {
+        var fraseInicial = ipt_frase.value;
+        var letraInicial = ipt_letra.value;
+
+        var fraseMinuscula = fraseInicial.toLowerCase();
+        var letraMinuscula = letraInicial.toLowerCase();
+        var tamanho = fraseMinuscula.length;
+
+        var mensagem = '';
+        var mensagemIndice = '';
+
+        var contIndice = 0
+
+        var img = '<img src="https://conhecimentocientifico.r7.com/wp-content/uploads/2020/03/universo-o-que-e-origem-principais-elementos-e-curiosidade-2.jpg">'
+
+        for (var i = 0; i < tamanho; i++) {
+            if (fraseMinuscula[i] == letraMinuscula) {
+
+                contIndice++;
+                mensagemIndice += `${i}, `
+                mensagem = `A letra procurada aparece ${contIndice} vezes na frase. <br>`
+
+                div_msg.innerHTML = `${mensagem} <br> 
+                Seus índices são ${mensagemIndice}`
+
+            } else if (contIndice == 0) {
+                div_msg.innerHTML = `Essa letra está em outro universo! <br>
+                ${img}`
+            }
+
+
+        }
+    }
+
+    /*
+c) Ao clicar em "Revelar Índices", percorra a string e mostre:
+
+    Todas as posições (índices) em que a letra aparece.
+    Quantas vezes ela aparece.
+
+d) Caso a letra não exista na frase, mostre:
+     “Essa letra está em outro universo!” */
+</script>

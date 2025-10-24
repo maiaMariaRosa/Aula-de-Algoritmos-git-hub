@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sari Edacos</title>
+    <title>Sari Edacos - Loja</title>
 </head>
 
 <body>
-    <div id="div_paginaParametros" div_paginaParametros.style.display="block">
+    <div id="div_paginaParametros" style="display: block">
         Inserir parâmetro inicial do salário do funcionário:
         <input type="text" id="ipt_salarioInicial" placeholder="Acima de R$3000"> <br>
         Inserir parâmetro final do salário do funcionário:
@@ -35,31 +35,46 @@
         <div id="div_erro1"></div>
     </div>
 
-    <div id="div_pagarSalario" div_pagarSalario.style.display="none">
+    <div id="div_pagarSalario" style="display: none;">
         Inserir nome do funcionário:
         <input type="text" id="ipt_nome"> <br>
-        Inserir salário do funcionário:
-        <input type="text" id="ipt_salarioFuncionario"> <br>
-        Qual cadeira gostaria de comprar?
-        <select name="" id="select_cadeira">
-            <option value="100" selected disabled>Selecione uma opção</option>
-            <option value="101">Cadeira de Praia</option>
-            <option value="102">Cadeira de Jardim</option>
-            <option value="103">Cadeira de Pesca</option>
-        </select> <br>
-        Quantidade:
-        <input type="text" id="ipt_quantidade">
 
+        Inserir salário do funcionário:
+        <input type="text" id="ipt_salarioFuncionario"> <br> <br>
+
+        Quantidade Cadeiras de Praia:
+        <input type="text" id="ipt_quantidadePraia"> <br>
+
+        Quantidade Cadeiras de Jardim:
+        <input type="text" id="ipt_quantidadeJardim"> <br>
+
+        Quantidade Cadeiras de Pesca:
+        <input type="text" id="ipt_quantidadePesca"> <br>
+
+        <!-- <button onclick="pagar()">Pagar Salário</button> -->
         <button onclick="pagar()">Pagar Salário</button>
+
+        <br> <br>
+
+        <div id="div_pagExtrato"></div>
+
+        <br> <br>
+
+        <div id="divEncerramento" style="display:none;">
+            <button onclick="encerrarDia()">Encerrar o dia</button>
+
+            <br>
+
+            <div id="div_encerrarDia"></div>
+        </div>
     </div>
 
-    <div id="div_pagExtrato" div_Extrato.style.display="none"></div>
 </body>
 
 </html>
 <script>
     // Parâmetros de salário
-    var salarioFinal = 0;
+    var salarioInicial = 0;
     var salarioFinal = 0;
     var meses = 0;
 
@@ -72,10 +87,14 @@
     var qtCadPraia = 0;
     var qtCadJardim = 0;
     var qtCadPesca = 0;
+    var totalCadeiras = 0
 
-    var valorCadPraia = 0;
-    var valorCadJardim = 0;
-    var valorCadPesca = 0;
+    var valorCadPraia = 100;
+    var valorCadJardim = 120;
+    var valorCadPesca = 80;
+
+    var descJardim = 0
+    var descPesca = 0
 
     var totalCadPraia = 0;
     var totalCadJardim = 0;
@@ -85,178 +104,214 @@
     var valorCompraFinal = 0;
     var valorFinalDesconto = 0;
 
+    // Conta das cédulas
+    var nota200 = 0;
+    var divisao200 = 0;
+    var nota50 = 0;
+    var divisao50 = 0;
+    var nota20 = 0;
+    var divisao20 = 0;
+    var nota5 = 0;
+    var divisao5 = 0;
+    var nota1 = 0;
+    var divisao1 = 0;
+    var valorCedulas = 0;
+
+    function encerrarDia() {
+        totalCadeiras = qtCadJardim + qtCadPesca + qtCadPraia;
+
+        // percentual de quantidade das cadeiras em relação ao total
+        var percentualQtCadJardim = qtCadJardim / totalCadeiras * 100;
+        var percentualQtCadPraia = qtCadPraia / totalCadeiras * 100;
+        var percentualQtCadPesca = qtCadPesca / totalCadeiras * 100;
+
+        // percentual de valor das cadeiras em relação ao total
+        var percentualValorCadeiraPraia = totalCadPraia / valorCompraFinal * 100;
+        var percentualValorCadeiraJardim = totalCadJardim / valorCompraFinal * 100;
+        var percentualValorCadeiraPesca = totalCadPesca / valorCompraFinal * 100;
+
+        div_encerrarDia.innerHTML = ` <h5> Cadeira de Praia </h5> 
+        Quantidade total de cadeiras vendida: ${qtCadPraia} <br>
+        Valor Total da Venda: R$${valorCompraFinal} <br>
+        Percentual de proporção por cadeira em relação ao valor total das vendas: ${percentualValorCadeiraPraia.toFixed(2)}% <br>
+        Percentual de proporção por cadeira em relação a quantidade total das vendas: ${percentualQtCadPraia.toFixed(2)}% <br>
+
+        <h5> Cadeira de Jardim  </h5> 
+        Quantidade total de cadeiras vendida: ${qtCadJardim} <br>
+        Valor Total da Venda: ${valorCompraFinal} <br>
+        Percentual de proporção por cadeira em relação ao valor total das vendas: ${percentualValorCadeiraJardim.toFixed(2)}% <br>
+        Percentual de proporção por cadeira em relação a quantidade total das vendas: ${percentualQtCadJardim.toFixed(2)}% <br>
+
+        <h5> Cadeira de Pesca </h5> 
+        Quantidade total de cadeiras vendida: ${qtCadPesca} <br>
+        Valor Total da Venda: ${valorCompraFinal} <br>
+        Percentual de proporção por cadeira em relação ao valor total das vendas: ${percentualValorCadeiraPesca.toFixed(2)}% <br>
+        Percentual de proporção por cadeira em relação a quantidade total das vendas: ${percentualValorCadeiraPesca.toFixed(2)}% <br>
+        `
+        qtCadPraia = 0;
+        qtCadJardim = 0;
+        qtCadPesca = 0;
+        totalCadeiras = 0
+
+        valorCadPraia = 100;
+        valorCadJardim = 120;
+        valorCadPesca = 80;
+
+        descJardim = 0
+        descPesca = 0
+
+        totalCadPraia = 0;
+        totalCadJardim = 0;
+        totalCadPesca = 0;
+
+        // Valor conta final
+        valorCompraFinal = 0;
+        valorFinalDesconto = 0;
+
+        // Conta das cédulas
+        nota200 = 0;
+        divisao200 = 0;
+        nota50 = 0;
+        divisao50 = 0;
+        nota20 = 0;
+        divisao20 = 0;
+        nota5 = 0;
+        divisao5 = 0;
+        nota1 = 0;
+        divisao1 = 0;
+        valorCedulas = 0;
+    }
+
     function pagar() {
         nome = ipt_nome.value;
         salarioFuncionario = Number(ipt_salarioFuncionario.value);
 
-        var tipoCadeira = select_cadeira.value
+        // Capturando valores das cadeiras
+        qtCadPraia = Number(ipt_quantidadePraia.value); // Cadeira de Praia
+        qtCadPesca = Number(ipt_quantidadePesca.value); // Cadeira de Jardim 
+        qtCadJardim = Number(ipt_quantidadeJardim.value); // Cadeira de Pesca 
 
-        if (nome != '' || salarioFuncionario > 0 || qtCadJardim > 0 || qtCadPesca > 0 || qtCadPraia > 0 || tipoCadeira != '100') {
+        var aceiteCompra = false;
 
-            if (tipoCadeira == '101' /* Cadeira de Praia */) {
-                qtCadPraia += Number(ipt_quantidade.value);
-                valorCadPraia += 100;
+        if (nome != '' && salarioFuncionario >= salarioInicial && qtCadJardim >= 0 && qtCadPraia >= 0 && qtCadPesca >= 0) {
 
-                // Primeiro desconto
 
-                totalCadPraia += valorCadPraia * qtCadPraia;
-                valorCompraFinal += totalCadPraia + totalCadJardim + totalCadPesca;
-
-                // Segundo desconto
-                if (valorCadJardim > valorCadPraia && valorCadJardim > valorCadPesca) {
-                    valorFinalDesconto += valorCompraFinal * 5.5 / 100;
-                }
-
-                // Aceite da compra
-                var percentualVenda = valorCompraFinal * 100 / salarioFuncionario;
-
-                if (salarioFuncionario < salarioFinal && percentualVenda < 30.5) {
-                    //Emitir extrato
-                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
-                    Nome: ${nome} <br>
-                    Salário: ${salarioFuncionario} <br>
-                    Salário Líquido: ${salarioLiquido} <br> <br>
-                    Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
-                    Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
-                    Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
-                    `
-                } else if (salarioFuncionario > salarioFinal && percentualVenda < 20.75) {
-                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
-                    Nome: ${nome} <br>
-                    Salário: ${salarioFuncionario} <br>
-                    Salário Líquido: ${salarioLiquido} <br> <br>
-                    Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
-                    Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
-                    Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
-                    `
-                }
-
-                if (valorFinalDesconto > 0) {
-                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}
-                    Valor final com desconto adicional: ${valorFinalDesconto}`
-                    salarioLiquido += salarioFuncionario - valorFinalDesconto;
-
-                } else {
-                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}`
-                    salarioLiquido += salarioFuncionario - valorCompraFinal;
-                }
+            // Primeiro desconto
+            if (qtCadJardim > 0 && meses >= 1 && meses <= 5 || meses >= 10 && mes <= 12) {
+                descJardim = valorCadJardim * 7.2 / 100
+                valorFinalDesconto += descJardim
             }
-            else if (tipoCadeira == '102' /* Cadeira de Jardim */) {
-                qtCadPesca += Number(ipt_quantidade.value);
-                valorCadJardim += 120;
+            if (qtCadPesca > 3 && meses >= 4 && meses <= 10) {
+                descPesca = valorCadPesca * 6.09 / 100
+                valorFinalDesconto += descPesca
+            }
 
-                // Primeiro desconto
-                if (meses >= 1 || meses <= 5 || mesese >= 10 || mes <= 12) {
-                    valorCadJardim += valorCadJardim * 7.2 / 100
-                }
+            // Total da compra
+            totalCadPraia += (valorCadPraia * qtCadPraia);
+            totalCadJardim += (valorCadJardim - descJardim) * qtCadJardim;
+            totalCadPesca += (valorCadPesca - descPesca) * qtCadPesca;
+            valorCompraFinal = totalCadPraia + totalCadJardim + totalCadPesca - valorFinalDesconto;
+            // Desconto no valor final da compra
+            valorCompraFinal = valorCompraFinal - valorFinalDesconto;
+            salarioLiquido = salarioFuncionario - valorCompraFinal;
 
-                totalCadJardim += valorCadJardim * qtCadJardim;
+            // Segundo desconto
+            if (valorCompraFinal > 400 && qtCadPraia < 1 && qtCadPesca >= 1) {
+                valorFinalDesconto += valorCompraFinal * 2.5 / 100;
+            }
 
-                valorCompraFinal += totalCadPraia + totalCadJardim + totalCadPesca;
+            if (totalCadJardim > totalCadPraia && totalCadJardim > totalCadPesca) {
+                valorFinalDesconto += valorCompraFinal * 5.5 / 100;
+            }
 
-                // Segundo desconto
-                if (valorCompraFinal > 400 && qtCadPraia < 1 || qtCadPesca > 1) {
-                    valorFinalDesconto += valorCompraFinal * 2.5 / 100;
-                }
-                if (valorCadJardim > valorCadPraia && valorCadJardim > valorCadPesca) {
-                    valorFinalDesconto += valorCompraFinal * 5.5 / 100;
-                }
 
-                // Aceite da compra
-                var percentualVenda = valorCompraFinal * 100 / salarioFuncionario;
+            // Aceite da compra
+            var percentualVenda = valorCompraFinal / salarioFuncionario * 100;
 
-                if (salarioFuncionario < salarioFinal && percentualVenda < 30.5) {
-                    //Emitir extrato
-                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
+            if (salarioFuncionario > salarioInicial && salarioFuncionario < salarioFinal && percentualVenda < 30.5) {
+
+                //Emitir extrato
+                div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
         Nome: ${nome} <br>
         Salário: ${salarioFuncionario} <br>
         Salário Líquido: ${salarioLiquido} <br> <br>
-        Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
-        Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
-        Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
+        Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$${totalCadPraia.toFixed(2)} | Valor com descontos: R$${totalCadPraia.toFixed(2)} <br>
+        Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$${(totalCadJardim + descJardim).toFixed(2)} | Valor com descontos: R$${totalCadJardim.toFixed(2)} <br>
+        Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$${(totalCadPesca + descPesca).toFixed(2)} | Valor com descontos: R$${totalCadPesca.toFixed(2)} <br> <br>
         `
-                } else if (salarioFuncionario > salarioFinal && percentualVenda < 20.75) {
-                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
-                    Nome: ${nome} <br>
-                    Salário: ${salarioFuncionario} <br>
-        Salário Líquido: ${salarioLiquido} <br> <br>
-        Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
-        Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
-        Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
-        `
-                }
+        aceiteCompra = true;
 
-                if (valorFinalDesconto > 0) {
-                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}
-                    Valor final com desconto adicional: ${valorFinalDesconto}`
-                    salarioLiquido += salarioFuncionario - valorFinalDesconto;
-                } else {
-                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}`
-                    salarioLiquido += salarioFuncionario - valorCompraFinal;
-                }
-            }
-            else if (tipoCadeira == '103' /* Cadeira de Pesca */) {
-                qtCadJardim += Number(ipt_quantidade.value);
-                valorCadPesca += 80
-                // Primeiro desconto
-
-                if (meses >= 4 || meses <= 10 || qtPesca > 3) {
-                    valorCadPesca += valorCadPesca * 6.09 / 100
-                }
-
-                totalCadPesca += valorCadPesca * qtCadPesca;
-
-                valorCompraFinal += totalCadPraia + totalCadJardim + totalCadPesca;
-
-                // Segundo desconto
-                if (valorCompraFinal > 400 && qtCadPraia < 1 || qtCadPesca > 1) {
-                    valorFinalDesconto += valorCompraFinal * 2.5 / 100;
-                }
-                if (valorCadJardim > valorCadPraia && valorCadJardim > valorCadPesca) {
-                    valorFinalDesconto += valorCompraFinal * 5.5 / 100;
-                }
-
-                // Aceite da compra
-                var percentualVenda = valorCompraFinal * 100 / salarioFuncionario;
-
-                if (salarioFuncionario < salarioFinal && percentualVenda < 30.5) {
-                    //Emitir extrato
-                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
+            } else if (salarioFuncionario > salarioFinal && percentualVenda < 20.75) {
+                div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
         Nome: ${nome} <br>
         Salário: ${salarioFuncionario} <br>
         Salário Líquido: ${salarioLiquido} <br> <br>
-        Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
-        Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
-        Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
+        Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$${totalCadPraia.toFixed(2)} | Valor com descontos: R$${totalCadPraia.toFixed(2)} <br>
+        Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$${(totalCadJardim + descJardim).toFixed(2)} | Valor com descontos: R$${totalCadJardim.toFixed(2)} <br>
+        Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$${(totalCadPesca + descPesca).toFixed(2)} | Valor com descontos: R$${totalCadPesca.toFixed(2)} <br> <br>
         `
-                } else if (salarioFuncionario > salarioFinal && percentualVenda < 20.75) {
-                    div_pagExtrato.innerHTML = ` <h4>Extrato</h4>
-        Nome: ${nome} <br>
-        Salário: ${salarioFuncionario} <br>
-        Salário Líquido: ${salarioLiquido} <br> <br>
-        Quantidade de cadeiras de Praia: ${qtCadPraia} | Valor Inicial: R$100 | Valor com descontos: ${totalCadPraia} <br>
-        Quantidade de cadeiras de Jardim: ${qtCadJardim} | Valor Inicial: R$120 | Valor com descontos: ${totalCadJardim} <br>
-        Quantidade de cadeiras de Pesca: ${qtCadPesca} | Valor Inicial: R$80 | Valor com descontos: ${totalCadPesca} <br> <br>
-        `
-                }
+        aceiteCompra = true;
 
-                if (valorFinalDesconto > 0) {
-                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}
-                    Valor final com desconto adicional: ${valorFinalDesconto}`
-                    salarioLiquido = salarioFuncionario - valorFinalDesconto;
-                } else {
-                    div_pagExtrato.innerHTML += `Valor final sem desconto: ${valorCompraFinal}`
-                    salarioLiquido = salarioFuncionario - valorCompraFinal;
-                }
-            }
+            } else {
+            div_pagExtrato.innerHTML = `<span style="color:red"> Compra não aceita, valor acima do que pode ser pago com o salário do funcionário. </span> `
         }
+            // Conta das cédulas
+            divisao200 = valorCompraFinal / 200;
+            nota200 = Math.floor(divisao200);
+            valorCedulas = valorCompraFinal % 200;
+
+            divisao50 = valorCedulas / 50;
+            nota50 = Math.floor(divisao50);
+            valorCedulas = valorCedulas % 50;
+
+            divisao20 = valorCedulas / 20;
+            nota20 = Math.floor(divisao20);
+            valorCedulas = valorCedulas % 20;
+
+            divisao5 = valorCedulas / 5;
+            nota5 = Math.floor(divisao5);
+            console.log(nota5)
+            valorCedulas = valorCedulas % 5;
+            console.log(valorCedulas)
+
+            divisao1 = valorCedulas / 1;
+            nota1 = Math.floor(divisao1);
+            valorCedulas = valorCedulas % 1;
+
+
+            // Exibir valor final da compra e conta final de cédulas
+            if (valorFinalDesconto > 0 || descJardim > 0 || descPesca > 0 && aceiteCompra == true) {
+
+                div_pagExtrato.innerHTML += `Valor final da compra sem desconto: R$${valorCompraFinal + valorFinalDesconto} <br>
+                    Valor final da compra com desconto adicional: R$${valorCompraFinal} 
+                    <br> <br>
+                    Desconto 1: R$${descJardim.toFixed(2)} <br>
+                    Desconto 2: R$${descPesca.toFixed(2)} <br>
+                    Para fazer o pagamento de R$${valorCompraFinal}, serão necessárias ${nota200} notas de R$200,00, ${nota50} notas de R$50,00, ${nota20} notas de R$20,00, ${nota5} notas de R$5,00 e ${nota1} notas de R$1,00`
+
+                document.getElementById('divEncerramento').style.display = "block";
+
+            } else if ( valorFinalDesconto == 0 || descJardim == 0 || descPesca == 0 && aceiteCompra == true ){
+
+                div_pagExtrato.innerHTML += `Valor final da compra sem desconto: R$${valorCompraFinal} <br>
+                    <br> <br>
+                    Para fazer o pagamento de R$${valorCompraFinal}, serão necessárias ${nota200} notas de R$200,00, ${nota50} notas de R$50,00, ${nota20} notas de R$20,00, ${nota5} notas de R$5,00 e ${nota1} notas de R$1,00`
+
+                document.getElementById('divEncerramento').style.display = "block";
+
+            }
+        } 
+
+
     }
+
+
     function registrar() {
         salarioInicial = Number(ipt_salarioInicial.value);
         salarioFinal = Number(ipt_salarioFinal.value);
         meses = Number(select_meses.value);
 
-        if (salarioInicial < 3000 || salarioFinal > (salarioInicial * 4) || meses == '0') {
+        if (salarioInicial <= 3000 || salarioFinal > (salarioInicial * 4) || meses == '0') {
             div_erro1.innerHTML = `<br> <span style="color: red">O parâmetro do salário inicial precisa ser acima de R$3000. <br>
             O parâmetro do salário final precisa ser acima do valor do salário inicial. <br>
             O mês corrente deve estar selecionado.</span>`;

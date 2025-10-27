@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Nome: <input type="text" id="input_nome"><br>
+    indice: <input type="text" id="input_indice"><br>
+
+    <button onclick="Adicionar()">Adicionar Contato</button> <br>
+    <button onclick="Exibir()">Exibir Contato</button> <br>
+    <button onclick="Pesquisar()">Pesquisar Contato</button> <br>
+    <button onclick="PesquisarAvancado()">Pesquisar Avançado</button> <br>
+    <button onclick="Excluir()">Excluir Contato</button> <br>
+    <button onclick="Alterar()">Alterar Contato</button> <br>
+
+    <br>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    var lista = [];
+
+    function Adicionar() {
+        var nome = input_nome.value;
+        lista.push(nome);
+    }
+    function Exibir() {
+        var mensagem = '';
+        for (var i = 0; i < lista.length; i++) {
+            mensagem += `Contato atual: ${lista[i]} <br>`
+        }
+        div_mensagem.innerHTML = `${mensagem}`
+    }
+    function Pesquisar() {
+        var nome = input_nome.value;
+        var existe = lista.includes(nome);
+
+        if (existe) {
+            div_mensagem.innerHTML += `O contato <b>${nome}</b> já existe na lista. <br>`
+        } else {
+            div_mensagem.innerHTML += `O contato <b>${nome}</b> não existe na lista.`
+        }
+
+        var indice = lista.indexOf(nome) // obtém o indice
+        var indiceExiste = indice >= 0 // verifica se ele é valido
+
+        if (indiceExiste == true) {
+            div_mensagem.innerHTML += `O contato <b>${nome}</b> existe na posição ${indice}. <br>`
+        }
+
+    }
+    function PesquisarAvancado() {
+        var nome = input_nome.value;
+        var contContato = 0;
+        var mensagem = '';
+        var posicoes = [];
+        // var existe = lista.includes(nome);
+
+        for (var i = 0; i < lista.length; i++) {
+            var contatoAtual = lista[i] // Acessa a posição i da lista dinâmicamente
+
+            if (contatoAtual == nome) {
+                contContato++
+                posicoes.push(i);
+            }
+        }
+
+        if (contContato == 0) {
+            div_mensagem.innerHTML = `O contato ${nome} não foi encontrado.`
+
+        } else {
+            div_mensagem.innerHTML = `O contato ${nome} foi encontrado ${contContato} vezes, nas posições: ${posicoes.toString().replaceAll(',', '<br>')}`
+        }
+    }
+
+    function Excluir() {
+        var nome = input_nome.value;
+        var indice = Number(input_indice.value);
+        var temp = [];
+
+        for ( var i = 0; i < lista.length; i++){
+            var contatoAtual = lista[i];
+            
+            if (i != indice) {
+                temp.push(contatoAtual);
+            }
+        }
+        lista = temp;
+
+    }
+    function Alterar() {
+        var nome = input_nome.value
+        var indice = input_indice.value
+        var indiceExiste = lista[indice]
+        
+        // var lista = [10,20,30] // length: 3
+        if (indice >= 0 && indice < lista.length) {
+            lista[indice] = nome;
+            div_mensagem.innerHTML = `O índice ${indice} foi alterado com sucesso! ${lista[indice]}`
+
+        } else {
+            div_mensagem.innerHTML = `O índice ${indice} não é válido.`
+        }
+
+    }
+</script>

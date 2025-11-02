@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poupança Estrela</title>
+</head>
+<body>
+    <div>
+        Quantos depósitos foram feitos no banco? <br>
+        <input type="text" id="ipt_quantidade"> <br><br>
+
+        Qual o valor de cada depósito? <br>
+        <input type="text" id="ipt_valor"> <br><br>
+         
+        <button onclick="acompanhar()">Acompanhar grana</button>
+    </div>
+
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+
+    function acompanhar() {
+        var quantidade = Number(ipt_quantidade.value);
+        var valor = Number(ipt_valor.value);
+        var cont = 0;
+        var mensagem = '';
+        var imagem = `<img style="width: 14px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjlt61Ot-B_cxb7rXIxnOjKITeYRC0LrWTIniIGa6sbq63_oxn2bF2DMO9ZJiZ3dIbdSY&usqp=CAU">`
+
+
+        for (var i = 1; i < quantidade; i++) {
+            cont++
+            var cont3 = i%3 
+
+            if ( cont3 == 0 ) {
+                valor = valor + (valor*1/100)
+                mensagem += `${cont}º Mês: R$${valor.toFixed(2)} ${imagem}<br> `
+
+            } else {
+                mensagem += `${cont}º Mês: R$${valor.toFixed(2)} <br>`
+
+            }
+
+        }
+
+        div_mensagem.innerHTML = mensagem
+    }
+    
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fases da vida</title>
+</head>
+
+<body>
+    <div>
+        Digite a sua idade: <br>
+        <input type="text" id="ipt_idade"> <br> <br>
+        <button onclick="verificar()">verificar</button>
+    </div>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function verificar() {
+        var idade = Number(ipt_idade.value);
+        var mensagem = '';
+
+        for (var i = 0; i < idade; i++) {
+            if (i >= 0 && i <= 4) {
+                mensagem += `${i} anos (Primeira Infância) <br>`
+            } else if (i >= 5 && i <= 6) {
+                mensagem += `${i} anos (Pré-escolar)<br>`
+            } else if (i > 6 && i <= 10) {
+                mensagem += `${i} anos (Segunda Infância) <br>`
+            } else if (i > 10 && i <= 18) {
+                mensagem += `${i} anos (Adolescência) <br>`
+            } else if (i > 18 && i <= 50) {
+                mensagem += `${i} anos (Adulto) <br>`
+            } else if (i > 50 && i <= 100) {
+                mensagem += `${i} anos (Melhor idade) <br>`
+            } else if (i > 100) {
+                mensagem += `${i} anos (Matusalém) <br>`
+            }
+            
+        }
+      div_msg.innerHTML = mensagem
+    }
+</script>

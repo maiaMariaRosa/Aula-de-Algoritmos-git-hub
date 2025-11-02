@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FizzBuzz</title>
+</head>
+
+<body>
+    <button onclick="calcular()">FizzBuzz</button> <br><br>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+
+    function calcular() {
+        cont = 0
+
+        for (i = 0; i <= 100; i++) {
+            var multiplo3 = cont % 3;
+            var multiplo5 = cont % 5;
+
+            
+            if (multiplo3 == 0) {
+                div_mensagem.innerHTML += 'Fizz <br>'
+            } else if (multiplo5 == 0) {
+                div_mensagem.innerHTML += 'Buzz <br>'
+            } else if (multiplo3 == 0 && multiplo5 == 0) {
+                div_mensagem.innerHTML += 'FizzBuzz <br>'
+            } else {
+                div_mensagem.innerHTML += `${cont} <br>`
+            }
+            cont++;
+        }
+
+    }
+    /*8. FizzBuzz
+
+Crie um script em JavaScript que resolva o clássico problema do FizzBuzz e exiba o resultado dentro de uma div na página utilizando innerHTML.
+Regras do FizzBuzz:
+
+    Para números de 1 a 100:
+
+        Se o número for múltiplo de 3, exiba "Fizz".
+
+        Se o número for múltiplo de 5, exiba "Buzz".
+
+        Se o número for múltiplo de 3 e 5, exiba "FizzBuzz".
+
+        Caso contrário, exiba o próprio número.
+*/
+</script>

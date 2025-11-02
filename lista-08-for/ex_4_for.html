@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>café com leite</title>
+</head>
+
+<body>
+    <div>
+        Quantas xícaras de café com leite você já tomou na vida? <br>
+        <input type="text" id="ipt_quantidade"> <br> <br>
+        <button onclick="calcular()">Ver a quantidade</button>
+    </div>
+
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var quantidade = Number(ipt_quantidade.value);
+        var colherLeite = `<img width="100px" src="https://nacolher.com/wp-content/uploads/2021/04/Como-Preparar-Leite-em-Po1.jpg">`;
+        var colherCafe = `<img height="100px" src="https://thumbs.dreamstime.com/b/uma-colher-cheia-de-caf%C3%A9-em-p%C3%B3-instant%C3%A2neo-um-pouco-mais-sobre-x%C3%ADcara-e-feij%C3%A3o-192173606.jpg">`
+        var mensagem = '';
+        
+        for (var i = 0; i < quantidade; i++){
+            var colher3 = i%3;
+            
+            if (colher3 == 0 ){
+                mensagem += `leiter ${colherLeite}`
+            } else {
+                mensagem += `cafer ${colherCafe}`
+            }
+        }
+        div_msg.innerHTML = mensagem
+    }
+</script>

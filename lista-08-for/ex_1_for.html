@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carona</title>
+</head>
+<body>
+    <div>
+        Quantas pessoas irão entrar no carro? <br>
+        <input type="text" id="ipt_quantidade"> <br><br>
+        <button onclick="partiu()">#Partiu Carona</button>
+    </div>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+
+    function partiu(){
+        var quantidade = Number(ipt_quantidade.value);
+        var cont = 1;
+        var mensagem = '';
+
+        for(var i = 0; i < quantidade; i++) {
+
+            if ( i == 0){
+                mensagem += `${cont}º passageiro, (que é o(a) motorista) <br>`
+            } else if ( i > 0 && i < 5) {
+                mensagem += `${cont}º passageiro <br>`
+            } else {
+                mensagem += `${cont}º terá que esperar <br>`
+            }
+            cont++
+        }
+
+        div_msg.innerHTML = mensagem
+    }
+
+</script>

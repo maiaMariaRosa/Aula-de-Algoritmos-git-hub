@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coca-cola?</title>
+</head>
+<body>
+    <div>
+        Quantas coca-colas você já bebeu na vida? <br>
+        <input type="text" id="ipt_quantidade" placeholder="Ex.: 1203">
+        <br><br>
+        <button onclick="calcular()">Ver a quantidade</button>
+    </div>
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+<script>
+    function calcular(){
+        var imagem = `<img style="width: 200px" src='https://i.ytimg.com/vi/f_kn4crqmso/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAopVDYGLK_FK8KiEiKElW06frvTw'>`
+        var quantidade = Number(ipt_quantidade.value);
+        var mensagem = '';
+
+        for ( var i = 0; i < quantidade; i++) {
+            mensagem += imagem
+        }
+        div_mensagem.innerHTML = mensagem
+    }
+</script>

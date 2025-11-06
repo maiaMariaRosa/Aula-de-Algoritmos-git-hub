@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Viva de Filmes Favoritos</title>
+</head>
+
+<body>
+    <div>
+        Insira o nome do seu filme preferido:
+        <br>
+        <input type="text" id="ipt_filme">
+        <br>
+        <button onclick="cadastrar()">Cadastrar filme</button>
+        
+    </div>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    var lista = [];
+
+    function cadastrar() {
+        var filme = ipt_filme.value;
+        lista.push(filme);
+        var mensagem = '';
+
+        console.log[lista]
+
+        for (i = 0; i < lista.length; i++) {
+            mensagem += `${i+1}. ${lista[i]} <br>`
+        }
+        div_msg.innerHTML = mensagem
+    }
+    /*
+Crie um programa o qual:
+
+a) O usuário informa os nomes dos filmes que mais gosta e clica em "Cadastrar"; 
+b) Na medida em que vai cadastrando, os filmes vão aparecendo um abaixo do outro, abaixo do botão. 
+*/
+</script>

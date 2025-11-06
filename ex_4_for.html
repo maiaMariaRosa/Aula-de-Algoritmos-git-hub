@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expressar amor</title>
+</head>
+<body>
+    <p>Qual o nome da pessoa que você mais ama na vida?</p>
+    <input type="text" value="Arthur" id="ipt_nome">
+    <p>Quanto você ama?</p>
+    <input type="text" id="ipt_valor" value="10000" placeholder="Ex.: 10">
+    <button onclick="expressar()">Expressar amor</button>
+    <div id="div_msg"></div>
+
+</body>
+</html>
+<script>
+    function expressar() {
+        var nome = ipt_nome.value
+        var valor = ipt_valor.value
+        mensagem = ''
+
+        for (i = 1; i <= valor; i++) {
+            mensagem += ` <br> ${i}. ${nome}, eu te amo! Sempre lembre disso!   `
+        }
+        div_msg.innerHTML += `<img src="https://usagif.com/wp-content/uploads/2022/hqgif/cat-hug-19-loving-cats-hugging-on-blanket-acegif.gif" alt="">`
+        div_msg.innerHTML += mensagem
+    }
+</script>

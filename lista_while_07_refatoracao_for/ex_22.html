@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Simples</title>
+</head>
+
+<body>
+    <div>
+        Insira um valor inicial: <br>
+        <input type="text" placeholder="Maior que 1" id="ipt_inicial"> <br>
+        <br>
+        Insira um valor final: <br>
+        <input type="text" placeholder="Maior que o valor inicial e menor que 100" id="ipt_final"> <br>
+        <br>
+        Insira um número para testar a divisibilidade: <br>
+        <input type="text" placeholder="Maior que 3 e menos que 10" id="ipt_divisivel"> <br>
+        <br>
+        <button onclick="contar()">Contar</button>
+    </div>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function contar() {
+        var inicial = Number(ipt_inicial.value)
+        var final = Number(ipt_final.value)
+        var numDivisivel = Number(ipt_divisivel.value)
+        var cont = inicial
+
+        var mensagem = ""
+        var divisao = 0
+        var somaDiv = 0
+        var numFinal = 0
+        var contAuxiliar = 0
+
+        if (inicial > 1 && final > inicial && final < 100) {
+            if (numDivisivel > 3 && numDivisivel < 10) {
+                for (i = inicial; i < final; i++) {
+                    if (cont % numDivisivel == 0) {
+                        mensagem += `${cont}, `
+
+                        somaDiv += cont
+                        contAuxiliar++
+                    }
+                    cont++
+                    numFinal = numDivisivel * contAuxiliar
+                }
+                div_mensagem.innerHTML = `${mensagem} <br>
+                    QUANTIDADE TOTAL DE NÚMEROS EXIBIDOS: ${contAuxiliar}
+                    <br>
+                    SOMATÓRIO DOS NÚMEROS EXIBIDOS: ${somaDiv} 
+                    <br>
+                    MÉDIA DOS NÚMEROS EXIBIDOS: ${somaDiv / contAuxiliar} 
+                    <br>
+                    MAIOR NÚMERO EXIBIDO: ${numFinal} 
+                    <br>
+                    MENOR NÚMERO EXIBIDO: ${numDivisivel}`
+            } else {
+                div_mensagem.innerHTML = `<span style="color: red"><b> O número precisa ser maior que 3 e menor que 100. </b> </span>`
+            }
+        } else {
+            div_mensagem.innerHTML = `<span style="color: red"><b> O valor  INICIAL precisa ser maior que 1 e o valor FINAL precisa ser maior que o valor inicial e menor que 100. </b> </span>`
+        }
+    }
+    /*
+d) Tenha num botão "Contar" que quando clicado exiba todos os números divisíveis pelo número informado no item c), desde o limite inferior (item a.) até o limite superior (item b.). Exibir esses números um ao lado do outro separados por uma vírgula e um espaço (, ).  
+
+e) Ao final, sem apagar as mensagens anteriores mostre as seguintes mensagens: 
+
+    QUANTIDADE TOTAL DE NÚMEROS EXIBIDOS: 99 
+
+    SOMATÓRIO DOS NÚMEROS EXIBIDOS: 999 
+
+    MÉDIA DOS NÚMEROS EXIBIDOS: 99,99 
+
+    MAIOR NÚMERO EXIBIDO: 99 
+
+    MENOR NÚMERO EXIBIDO: 99 */
+</script>

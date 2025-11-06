@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário de Viagens</title>
+</head>
+
+<body>
+    <div>
+        Destino de viagens: <br>
+        <input type="text" id="ipt_destino">
+        <button onclick="adicionar()">Adicionar</button>
+    </div>
+    <br> <br>
+    <div>
+        <button onclick="primeira()">Primeira viagem</button>
+        <button onclick="terceira()">Terceira viagem</button>
+        <button onclick="ultima()">Última viagem</button>
+    </div>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    var lista = [];
+
+    function adicionar() {
+        var destino = ipt_destino.value;
+        lista.push(destino);
+        console.log(lista)
+
+    }
+
+    function primeira() {
+        var destino = ipt_destino.value;
+        var mensagem = '';
+
+        if (lista[0] == undefined) {
+            mensagem = 'Ainda não viajou'
+        } else {
+            mensagem = `${lista[0]}`
+        }
+
+        div_msg.innerHTML = mensagem
+
+    }
+
+    function terceira() {
+        var destino = ipt_destino.value;
+        var mensagem = '';
+
+        if (lista[3] == undefined) {
+            mensagem = 'Ainda não viajou'
+        } else {
+            mensagem = `${lista[2]}`
+        }
+
+        div_msg.innerHTML = mensagem
+
+    }
+
+    function ultima() {
+        var destino = ipt_destino.value;
+        var mensagem = '';
+
+        if (lista[lista.length - 1] == undefined) {
+            mensagem = 'Ainda não viajou'
+        } else {
+            mensagem = `${lista[lista.length - 1]}`
+        }
+
+        div_msg.innerHTML = mensagem
+
+    }
+    /*
+2. Diário de Viagens: Do Primeiro ao Último Destino
+Crie um programa o qual: 
+
+a) Tenha um campo "Destino de viagem" e um botão "Adicionar";
+
+b) Ao clicar no botão, esse destino deve ser adicionado a uma lista (que não aparece para o usuário). 
+
+Obs: Não existe problema em serem registrados valores repetidos.
+
+c) Devem haver os botões: 
+
+  "Primeira viagem" - Ao ser clicado, aparece abaixo o primeiro local cadastrado ou "Ainda não viajou" - caso nenhuma (zero viagens) viagem tenha sido registrada;
+
+  "Terceira viagem" - Ao ser clicado, aparece abaixo o terceiro local cadastrado ou "Ainda não fez a terceira viagem", caso não tenha feito, ao menos, três viagens;
+
+  "Última viagem" - Ao ser clicado, aparece abaixo o último local cadastrado ou "Ainda não viajou", caso nenhuma (zero viagens) viagem tenha sido registrada.
+*/
+</script>

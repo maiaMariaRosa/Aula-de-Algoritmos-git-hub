@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma de Pares</title>
+</head>
+
+<body>
+    <div>
+        Insira um número: <br>
+        <input type="text" placeholder="Entre 10 e 500" id="ipt_num">
+        <br>
+        <button onclick="somar()">Somar Pares</button>
+        <br> <br>
+        <div id="div_mensagem"></div>
+    </div>
+</body>
+
+</html>
+<script>
+    function somar() {
+        var num = Number(ipt_num.value)
+        var mensagem = ""
+
+        if (num >= 10 && num <= 500) {
+            for (i = 1; i < num; i++){
+                mensagem += `<i>Soma dos pares:</i> ${i + i} <br>`
+                cont++
+            }
+            div_mensagem.innerHTML += `${mensagem}`
+        } else {
+            div_mensagem.innerHTML = `<span style="color: red"> <b> O Número precisa estar entre 10 e 500 </b> </span> `
+        }
+    }
+
+    /*20. Divisibilidade
+
+Crie  um programa o qual:
+
+a) Solicite um número, que deve estar entre 10 e 500, exibindo alerta de erro caso não atenda os critérios;
+
+b) Ao clicar no botão "Somar Pares", deve exibir todos os números pares entre 1 e o número inserido pelo usuário;
+
+c) Ao final da listagem, deve exibir a frase "Soma dos pares: X", sendo X a soma de todos os números exibidos;*/
+</script>

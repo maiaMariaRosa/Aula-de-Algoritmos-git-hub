@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino de Musculação</title>
+</head>
+
+<body>
+    <div>
+        Quantos dias você faz musculação?
+        <input type="text" id="ipt_dias">
+    </div>
+    <button onclick="calcular()">Exibir rotina mensal</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var dias = Number(ipt_dias.value)
+        
+        for (i = 1; i <= 30; i++) {
+        resto = i % dias
+        
+        if (resto == 0) {
+                div_msg.innerHTML += `<br> Dia ${i} - Musculação `
+        } else {
+                div_msg.innerHTML += `<br> Dia ${i} - Comer, dormir etc `
+        }
+    }
+}
+</script>

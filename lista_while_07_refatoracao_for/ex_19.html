@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números Primos</title>
+</head>
+
+<body>
+    <div>
+        Insira um número: <br>
+        <input type="text" id="ipt_num"> <br>
+    </div>
+    <button onclick="calcular()">Números Primos</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var num = Number(ipt_num.value)
+        var contDiv = 0
+        var mensagem = `Divisores do Número ${num} <br>`
+
+
+        for (i = 0; i <= num; i++) {
+            if (num % i == 0) {
+                contDiv++
+                mensagem += `${i} <br>`
+            }
+        } if (contDiv == 2) {
+            mensagem += `O número ${num} é um número primo.`
+        }
+
+        div_msg.innerHTML = `${mensagem}`
+    }
+    /* Crie  um programa o qual:
+
+a) Ao exibir os divisores do número informado, caso o número seja divisível somente por 1 e por ele mesmo, exiba abaixo: 
+
+     Divisores do Número 13:
+
+     1
+
+     13
+
+     O número 13 é um número primo.
+*/
+</script>

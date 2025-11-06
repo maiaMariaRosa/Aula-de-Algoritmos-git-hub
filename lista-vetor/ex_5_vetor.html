@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Favoritos: Seus Filmes em Destaque</title>
+</head>
+
+<body>
+    <div>
+        Insira o nome do seu filme preferido:
+        <br>
+        <input type="text" id="ipt_filme">
+        <br>
+        <button onclick="cadastrar()">Cadastrar filme</button>
+        
+    </div>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    var lista = [];
+    var cont = 0;
+
+    function cadastrar() {
+        var filme = ipt_filme.value;
+        lista.push(filme);
+        var mensagem = '';
+        cont++
+
+        if ( lista[2] == undefined) {
+            mensagem = `Ainda não existe`
+        } else {
+            mensagem = `${lista[2]}`
+        }
+        div_msg.innerHTML = `Seu filme favorito: ${lista[0]}
+            <br>
+            Seu 3º filme favorito: ${mensagem}
+            <br>
+            Total de filmes cadastrados: ${cont}.
+        `
+    }
+    /*
+Crie um programa o qual: 
+
+a) Usuário cadastre os nomes de seus filmes favoritos e adiciona cada um ao clicar em "Cadastrar Filme";
+
+b) Na medida em que vai cadastrando, deve ser exibido ou atualizado um "painel" como neste exemplo: 
+
+  Seu filme favorito: Donnie Darko
+
+  Seu 3º filme favorito: A era do gelo 1 
+
+  Total de filmes cadastrados: 5 
+
+Obs: no "3º filme", caso não tenham sido cadastrados ainda 3 filmes, exibir "Ainda não existe". 
+Obs: o "Filme favorito" é o primeiro cadastrado.
+*/
+</script>

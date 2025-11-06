@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papagaio</title>
+</head>
+<body>
+    <div>
+        Insira um número: <br>
+        <input type="number" id="ipt_num"> <br>
+        Insira uma frase: <br>
+        <input type="text" id="ipt_frase"> <br>
+    </div>
+    <div id="div_msg"></div>
+    <br>
+    <button onclick="falar()">Papagaio</button>
+</body>
+</html>
+
+<script>
+    function falar(){
+        var frase = ipt_frase.value
+        var numero = ipt_num.value
+
+        for (i = 0 ; i < numero; i++) {
+            alert(`${frase}`)
+        }
+    }
+    /*
+
+Crie um programa o qual:
+
+a) Pergunte ao usuário um número  
+
+b) Pergunte ao usuário uma frase  
+
+c) Ao clicar num botão "Papagaio", a frase é exibida N vezes em N alerts, onde N é o número informado em a)
+
+OBS: ao digitar "oi" e "2", devem aparecer 2 alertas, escritos "oi oi"
+
+OBS2: utilize a tecla "enter" ao invés de clicar com o mouse para fechar o alerta, garantindo um melhor funcionamento para testar a quantidade de alertas.
+*/
+</script>

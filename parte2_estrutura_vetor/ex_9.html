@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos da vida</title>
+</head>
+
+<body>
+    <div>
+        Insira o nome de um dos projetos que já criou na vida: <br>
+        <input type="text" id="input_projeto"> <br><br>
+        <button onclick="registrar()">Registrar projeto</button>
+        <button onclick="mostrar()">Mostrar Projetos</button>
+    </div>
+    <br> <br>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    var lista = [];
+
+    function registrar() {
+        var projeto = input_projeto.value;
+        lista.push(projeto);
+        var tamanho = lista.length;
+        var mensagem = '';
+
+
+        for (var i = 0; i < tamanho; i++) {
+            if (i >= 0 && i <= 4) {
+                mensagem = `Você já fez ${lista.length - 1} projetos. Por isso você é um profissional Júnior`
+            }
+            else if (i >= 5 && i <= 12) {
+                mensagem = `Você já fez ${lista.length - 1} projetos. Por isso você é um profissional Pleno`
+            }
+            else if (i >= 13) {
+                mensagem = `Você já fez ${lista.length - 1} projetos. Por isso você é um profissional Sênior`
+            }
+        }
+
+        div_mensagem.innerHTML = `${mensagem}`
+
+    }
+
+    function mostrar(){
+        var mensagem = '';
+
+
+        for (var i = 0; i < lista.length-1; i++) {
+            mensagem += `${lista[i]} <br>`
+        }
+
+        div_mensagem.innerHTML += ` <br>${mensagem}`
+
+    }
+    /*
+    Crie um programa o qual: 
+
+a) Pergunte ao usuário o nome de cada projeto que já criou na vida. Ele digita e clica em "Registrar projeto". Na medida em que vai cadastrando, verifique quantos projetos já foram cadastrados e exiba o seguinte texto abaixo:  
+
+     Você já fez X projetos. Por isso você é um profissional Z  
+
+     X é a quantidade de projetos e Z é seu nível de experiência, segundo estas regras:  
+
+     0 a 4: Júnior  
+
+     5 a 12: Pleno  
+
+     13 ou mais: Sênior  
+
+b)  Tenha um botão “Mostrar Projetos” que quando clicado mostra os projetos cadastrados, um abaixo do outro, em ordem inversa ao que foi cadastrado. */
+</script>

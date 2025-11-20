@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Piece Episodios</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            Por qual episódio deseja começar a assistir a série? <br>
+            <input type="number" id="ipt_epsInicial"> <br><br>
+
+            Quanto tempo você tem disponível para assistira série? <br>
+            <input type="number" id="ipt_tempoDisponivel"> <br> <br>
+
+            Unidade de tempo em: <br>
+            <select name="" id="select_uniMedida">
+                <option value="1">Horas</option>
+                <option value="2">Minutos</option>
+                <option selected disabled value="#">Selecione uma opção</option>
+            </select>
+
+            <br><br>
+
+        </div>
+        <div>
+            Deseja pular a abertura dos episódios? <br>
+            <select name="" id="select_pularAbertura">
+                <option value="1">Sim</option>
+                <option value="2">Não</option>
+                <option selected disabled value="#">Selecione uma opção</option>
+            </select> <br><br>
+
+            Deseja pular o encerramento dos episódios? <br>
+            <select name="" id="select_pularEncerramento">
+                <option value="1">Sim</option>
+                <option value="2">Não</option>
+                <option selected disabled value="#">Selecione uma opção</option>
+            </select>
+            <br><br><br>
+            <button onclick="assistir()">Assistir episódios</button> <br><br>
+        </div>
+
+        <div id="div_titulo"></div>
+
+        <div id="div_mensagem"></div>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function assistir() {
+        var epsInicial = Number(ipt_epsInicial.value);
+        var tempoDisponivel = Number(ipt_tempoDisponivel.value);
+        var uniMedida = select_uniMedida.value;
+        var pularAbertura = select_pularAbertura.value;
+        var pularEncerramento = select_pularEncerramento.value;
+
+
+        var aberturaEpisodio = 1;
+        var fimEpisodio = 24;
+
+
+        var tempoTotal = 24;
+        var mensagem = '';
+
+
+        if (epsInicial == '' || epsInicial < 1 || epsInicial > 1100) {
+            div_mensagem.innerHTML = `<span style="color: red"><b>O número do episódio é inválido!</b></span>`
+
+        } else if (tempoDisponivel == '' || uniMedida == '#' || pularAbertura == '#' || pularEncerramento == '#') {
+            div_mensagem.innerHTML = `<span style="color: red"><b>Todos campos devem estar preenchidos!</b></span>`
+
+        } else {
+
+            if (uniMedida == '1') { // horas
+                tempoDisponivel *= 60;
+
+                if (pularAbertura == '1') { //sim
+                    aberturaEpisodio = 3;
+                    tempoTotal -= 2;
+
+                }
+                if (pularEncerramento == '1') { //sim
+                    fimEpisodio = 22;
+                    tempoTotal -= 2;
+
+                }
+
+                var numEpsAssistido = 0;
+
+                for (var i = epsInicial; i < tempoDisponivel; i++) {
+                    numEpsAssistido = i;
+
+                    div_mensagem.innerHTML += `Episodio: ${numEpsAssistido}<br>`
+
+
+                    for (var j = aberturaEpisodio; j <= fimEpisodio; j++) {
+
+                        if (pularAbertura == '2' && j < 3) { //não
+                            div_mensagem.innerHTML += `Minuto ${j}. Assistindo a Abertura <br>`
+
+                        } else if (pularEncerramento == '2' && j > 22) { //não
+                            div_mensagem.innerHTML += `Minuto ${j}. Assistindo o encerramento <br>`
+
+                        } else if (j >= aberturaEpisodio && j <= fimEpisodio) {
+                            div_mensagem.innerHTML += `Minuto ${j}. Assistindo o episódio <br>`
+
+                        }
+
+                    }
+                    tempoDisponivel -= tempoTotal;
+                }
+            }
+
+            if (uniMedida == '2') { // minutos
+
+                if (pularAbertura == '1') { //sim
+                    aberturaEpisodio = 3;
+                    tempoTotal -= 2;
+
+                }
+                if (pularEncerramento == '1') { //sim
+                    fimEpisodio = 22;
+                    tempoTotal -= 2;
+
+                }
+
+                var numEpsAssistido = 0;
+
+
+                for (var i = epsInicial; i < tempoDisponivel; i++) {
+                    numEpsAssistido = i;
+
+                    div_mensagem.innerHTML += `Episodio: ${numEpsAssistido}<br>`
+
+
+                    for (var j = aberturaEpisodio; j <= fimEpisodio; j++) {
+
+                        if (pularAbertura == '2' && j < 3) { //não
+                            div_mensagem.innerHTML += `Minuto ${j}. Assistindo a Abertura <br>`
+
+                        } else if (pularEncerramento == '2' && j > 22) { //não
+                            div_mensagem.innerHTML += `Minuto ${j}. Assistindo o encerramento <br>`
+
+                        } else if (j >= aberturaEpisodio && j <= fimEpisodio) {
+                            div_mensagem.innerHTML += `Minuto ${j}. Assistindo o episódio <br>`
+
+                        }
+
+                    }
+                    tempoDisponivel -= tempoTotal;
+
+                }
+            }
+        }
+
+    }
+
+
+    /*
+g) Caso as entradas sejam válidas, exiba as seguintes informações abaixo do botão, de acordo com o “tempo disponível” que o usuário informou:   
+
+    g1) Qual episódio o usuário está assistindo no momento. 
+    g2) Listar todos os minutos do episódio, de 1 minuto até o fim do tempo do episódio. 
+    g3) Qual o status de cada minuto do episódio assistido, sendo o status:  
+
+        De 1 até 2 minutos – Abertura do Episódio (caso não tenha pulado) 
+        Mais de 2 até 22 minutos – Assistindo o Episódio 
+        Mais de 22 até 24 minutos – Encerramento do Episódio (caso não tenha pulado) 
+
+h) Caso o usuário ainda tenha “tempo disponível” após o episódio atual, exiba o próximo episódio, seguindo as mesmas regras do item g), até encerrar o tempo disponível do usuário. 
+
+i) Ao final da listagem dos episódios, exiba “Você assistiu XX episódios”, sendo XX o número de episódios assistido pelo usuário ao longo do seu tempo disponível. */
+
+</script>

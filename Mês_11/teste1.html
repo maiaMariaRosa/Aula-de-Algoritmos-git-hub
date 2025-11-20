@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    for (var i = 0; i < tempoDisponivel; i++) {
+                msg += `<br> Episódio: <b>${episodio + i}</b> <br><br>`
+
+                var limite = 0;
+
+                if (tempoDisponivel >= tempoTotalEpisodio) {
+                    limite = tempoTotalEpisodio;
+                } else {
+                    limite = tempoDisponivel
+                }
+
+                for (var j = 1; j <= limite; j++) {
+                    if (j <= 2) {
+                        if (j <= tempoAbertura) {
+                            msg +=` Minuto <b>${j}</b>: Assistindo Abertura <br>`
+                        } else {
+                            msg +=` Minuto <b>${j}</b>: Assistindo o Episódio <br>`
+                        }
+                    } else if (j <= (tempoAbertura + tempoEpisodio)) {
+
+                        msg += `Minuto <b>${j}</b>: Assistindo o Episódio <br>`
+
+                    } else {
+                        msg +=` Minuto <b>${j}</b>: Assistindo Encerramento <br>`
+                    }
+                    tempoDisponivel-- ;
+                }
+
+            }
+</script>

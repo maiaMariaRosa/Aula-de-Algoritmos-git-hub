@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque do Ananias</title>
+</head>
+
+<body>
+    <div>
+        Código do produto: <br>
+        <input type="text" id="input_produto"> <br>
+        Nome do produto: <br>
+        <input type="text" id="input_nome"> <br>
+        Quantidade em estoque: <br>
+        <input type="text" id="input_estoque"> <br> <br>
+        <button onclick="salvar()">Salvar produto</button>
+        <button onclick="ver()">Ver estoque</button>
+    </div>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    var listaEstoque = [
+        [], // Códigos do Produto
+        [], // Nome do Produto
+        [], // Número em Estoque do Produto
+    ];
+
+    function salvar() {
+        var produto = input_produto.value;
+        var codigoTratado = produto.trim();
+
+        var nome = input_nome.value;
+        var nomeTratado = nome.trim();
+
+        var estoque = input_estoque.value;
+
+        if (codigoTratado == '') {
+            div_mensagem.innerHTML = `Código inválido para o produto`
+        } else if (nomeTratado == '') {
+            div_mensagem.innerHTML = `Nome inválido para o produto`
+        } else if (estoque < 0) {
+            div_mensagem.innerHTML = `Quantidade inválida para o produto`
+        } else {
+
+            if (listaEstoque[0].length == 0) {
+
+                listaEstoque[0].push(codigoTratado);
+                listaEstoque[1].push(nomeTratado);
+                listaEstoque[2].push(estoque);
+
+                div_mensagem.innerHTML = `Produto cadastrado com sucesso`
+
+            } else if (listaEstoque[0].length > 0) {
+                console.log(codigoTratado, nomeTratado, estoque);
+
+                if (listaEstoque[0].indexOf(codigoTratado) >= 1 && listaEstoque[1].indexOf(nomeTratado) >= 1) {
+                    console.log(listaEstoque[0].indexOf);
+                    listaEstoque[2].push(estoque);
+
+                    div_mensagem.innerHTML = `O produto de código ${produto} teve 
+                        sua quantidade aumentada.`
+
+                } else {
+                    listaEstoque[0].push(codigoTratado);
+                    listaEstoque[1].push(nomeTratado);
+                    listaEstoque[2].push(estoque);
+
+                    div_mensagem.innerHTML = `Produto cadastrado com sucesso`
+                }
+
+            }
+        }
+
+    }
+
+    function ver() {
+        for (var i = 0; i < listaEstoque[0].length; i++) {
+            div_mensagem.innerHTML += `<h3>Produto Nº${i}</h3>
+            Código do Produto: ${listaEstoque[0][i]} <br>
+            Nome do Produto: ${listaEstoque[0][i]} <br>
+            Estoque: ${listaEstoque[0][i]} <br>
+            `
+        }
+    }
+</script>

@@ -10,34 +10,30 @@
 <body>
     <div>
         Digite o nome do aluno que deseja cadastrar: <br>
-        <input type="text" placeholder="Ex.: João Silva" id="ipt_nome"> <br><br>
+        <input type="text" id="input_nome"> <br> <br>
         <button onclick="cadastrar()">Cadastrar</button>
+        <br><br>
+
+        <div id="div_mensagem"></div>
     </div>
-    <div id="div_msg"></div>
 </body>
 
 </html>
 <script>
-    var alunos = [];
+    var lista = [];
 
     function cadastrar() {
-        var nome = ipt_nome.value;
-        alunos.push(nome);
-        var mensagem = ''
-        var tamanho = alunos.length
+        var nomes = input_nome.value;
+        lista.push(nomes);
+        var tamanho = lista.length - 1;
+        var mensagem = '';
 
-
-        for (i = tamanho - 1; i >= 0; i--) {
-            mensagem += `${alunos[i]} <br>`
+        for (var i = tamanho; i >= 0; i--) {
+            mensagem += `${lista[i]} <br>`
         }
 
-        /* 
-        for (i = tamanho - 1; i > tamanho; i++) {
-            mensagem += `${alunos[i]} <br>`
-        }
-        */
+        div_mensagem.innerHTML = `${mensagem}`
 
-        div_msg.innerHTML = `${mensagem} `
 
     }
     /*8.

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interestelar</title>
+</head>
+
+<body>
+    <div>
+        Nome do astronauta; <br>
+        <input type="text" id="input_nome"> <br>
+        Quantidade de dias; <br>
+        <input type="text" id="input_qtDias"> <br>
+        Quantidade de horas; <br>
+        <input type="text" id="input_horas"> <br>
+        Quantidade de minutos; <br>
+        <input type="text" id="input_minutos"> <br>
+
+        <button onclick="registrar()">Registrar viagem</button> <br><br>
+
+        <button onclick="relatorio()">Relatório de viagens"</button>
+    </div>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    // nome, qtDias, horas, minutos
+    var viagem = [[], [], [], []];
+    var totalMinutos = 0;
+
+
+    function registrar() {
+        var nome = input_nome.value;
+        var qtDias = Number(input_qtDias.value);
+        var horas = Number(input_horas.value);
+        var minutos = Number(input_minutos.value);
+
+        if (nome == '' || qtDias <= 0 || horas <= 0 || minutos <= 0) {
+            alert('Informe um tempo de viagem válido!')
+        } else {
+            var qtDias_Minutos = qtDias * 1440;
+            var horas_minutos = horas * 60;
+
+            totalMinutos = minutos + qtDias_Minutos + horas_minutos;
+
+        }
+    }
+
+    function relatorio() {
+        var mensagem = '';
+
+        // 0  - 13 // 13 - 30 // 30 - 65 // 65 - 100 // > 100
+        for (var i = 0; i <)
+        
+        
+    }
+    
+    // minutos x dias + minutos x horas + minutos
+    // 1 dia tem 1440 minutos
+</script>

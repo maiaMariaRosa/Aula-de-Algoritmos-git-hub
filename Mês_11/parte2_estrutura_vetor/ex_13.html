@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        Cadastre a campanha de um time de futebol num campeonato: <br><br>
+        <input type="text" id="input_campanha"> <br> <br>
+        Indique o resultado:
+        <select name="" id="select_combo">
+            <option value="#" selected disabled>Selecione uma opção</option>
+            <option value="3">Vitória</option>
+            <option value="1">Empate</option>
+            <option value="0">Derrota</option>
+        </select>
+        <br><br>
+        <button onclick="registrar()">Registrar jogo</button> <br><br>
+        Indique qual jogo deseja saber o resultado:
+        <input type="text" id="input_pesquisar">
+        <button onclick="pesquisar()">Pesquisar</button>
+
+    </div>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    var lista = [
+        [],
+        []
+    ];
+
+    var pontosV = 0;
+    var pontosE = 0;
+
+    var cont3 = 0;
+    var cont1 = 0;
+    var cont0 = 0;
+
+    function registrar() {
+        var campanha = input_campanha.value;
+        var combo = Number(select_combo.value);
+
+
+        lista[0].push(campanha);
+        lista[1].push(combo);
+        console.log(lista)
+
+        var total = 0;
+
+        if (isNaN(combo)) {
+
+            alert('Escolha uma opção válida')
+            lista = [[], []]
+
+        } else if (combo == '3') {
+            cont3++;
+        } else if (combo == '1') {
+            cont1++;
+        } else {
+            cont0++;
+        }
+
+        for (i = 0; i < lista[1].length; i++) {
+            total += lista[1][i]
+        }
+
+        var totalPossivel = lista[0].length * 3;
+        var porcentagem = total * 100 / totalPossivel;
+
+        //Em que X é calculado assim: Cada vitória (V) vale 3 pontos. Cada empate (E) vale 1 ponto. Cada derrota (D) vale 0 pontos. 
+
+
+        div_mensagem.innerHTML = `<br> O time teve: ${cont3} vitórias, ${cont1} empates, ${cont0} derrotas. 
+        <br>
+        Pontuação total: ${total} pontos  
+        <br>
+        Aproveitamento: ${porcentagem}%  
+        `
+
+
+    }
+
+    function pesquisar() {
+        var campanha = input_campanha.value;
+        var combo = select_combo.value;
+        var pesquisar = input_pesquisar.value;
+
+        var mensagem = '';
+
+        for (var i = 0; i < lista[1].length; i++) {
+
+            if (lista[1][pesquisar - 1] == 3) {
+                mensagem = `No ${pesquisar}º jogo, o time Ganhou <br>`
+
+            } else if (lista[1][pesquisar - 1] == 2) {
+                mensagem = `No ${pesquisar}º jogo, o time Empatou <br>`
+
+            } else if (lista[1][pesquisar - 1] == 0) {
+                mensagem = `No ${pesquisar}º jogo, o time Perdeu <br>`
+            } else {
+                mensagem = `Não foi cadastrado um ${pesquisar}º jogo`
+            }
+        }
+
+        div_mensagem.innerHTML += `<br>${mensagem}`
+    }
+
+    /*
+
+b) Ao clicar num botão "Registrar jogo", o resultado escolhido em a) é registrado em um local invisível ao usuário e um texto abaixo é exibido (ou atualizado). O texto é como este:  
+
+      O time teve: V vitórias, E empates, D derrotas  
+
+      Pontuação total: X pontos  
+
+      Aproveitamento: Y%  
+
+O Y é o total de pontos conquistados (X) dividido pelo total de pontos possíveis (ou seja, considerando que tivesse vencido todos os jogos) vezes 100.  
+
+c) Deve haver um campo "Indique qual jogo deseja saber o resultado". Na medida em que vai digitando, aparece um texto, abaixo do texto de b) como este:  
+
+  No XXº jogo, o time Ganhou (ou "Perdeu" ou "Empatou")  
+
+ou um texto como este, caso o valor seja de um jogo que não foi cadastrado:  
+
+  Não foi cadastrado um XXº jogo  
+
+Obs: Neste item considere que o usuário ache que 1 indica o 1º jogo. Ou seja, o usuário não imagina que o 1º é o jogo "0" na verdade. */
+</script>

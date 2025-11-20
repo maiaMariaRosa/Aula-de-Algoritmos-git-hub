@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        Nome do produto: <br>
+        <input type="text" id="input_produto"> <br><br>
+        Preço de compra: <br>
+        <input type="text" id="input_preco"> <br><br>
+        <button onclick="Cadastrar()">Cadastrar</button> <br>
+        <button onclick="relatorio()">Relatório de estoque</button>
+    </div>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+
+    var listaProduto = [];
+    var listaPreco = [];
+    var listaPrecoInicial = [];
+
+    function Cadastrar() {
+        var produto = input_produto.value;
+        var preco = input_preco.value;
+        var precoTotal = preco + (preco * 25 / 100)
+
+        listaProduto.push(produto);
+        listaPreco.push(precoTotal);
+        listaPrecoInicial.push(preco);
+
+
+    }
+
+    function relatorio() {
+        var venda = '';
+        var cont = 0
+
+        for (i = 0; i < listaProduto.length; i++) {
+            venda += `Produto: ${listaProduto[i]} <br>
+            Preço de compra: ${listaPrecoInicial[i]}. Vender por ${listaPreco[i]} <br>`
+            cont++
+        }
+
+        div_mensagem.innerHTML = `Total de produtos: ${cont} <br>
+        ${venda} <br>`
+    }
+    /*
+c) Tenha um botão "Relatório de estoque". Ao clicar nele, deve aparecer uma listagem dos produtos cadastrados com seu valor para venda, como no exemplo a seguir:  
+
+   Total de produtos: 2  
+
+   Produto 1: Leite de arroz  
+
+   Preço de compra: R$1.50. Vender por R$1,87  
+
+   Produto 2: Caixa de chocolates  
+
+   Preço de compra: R$9.00. Vender por R$11,25  
+
+O preço de venda é sempre o valor da compra mais 25%. 
+
+#FicaDica: De repente você pode precisar de 2 vetores aqui ;) */
+</script>

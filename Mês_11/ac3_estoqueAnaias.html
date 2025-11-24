@@ -28,7 +28,13 @@
         [], // Códigos do Produto
         [], // Nome do Produto
         [], // Número em Estoque do Produto
+        []  // Preço aleatório
     ];
+    /*
+    e) Faça uma melhoria no código que cria um preço aleatório entre 1 e 999 e cadastra junto do produto; 
+    Também exiba esse preço junto do relatório de todos os produtos.  
+    */
+    var precoAleatorio = Math.floor(Math.random() * 999)
 
     function salvar() {
         var produto = input_produto.value;
@@ -36,7 +42,6 @@
 
         var nome = input_nome.value;
         var nomeTratado = nome.trim();
-
         var estoque = input_estoque.value;
 
         if (codigoTratado == '') {
@@ -47,11 +52,13 @@
             div_mensagem.innerHTML = `Quantidade inválida para o produto`
         } else {
 
+
             if (listaEstoque[0].length == 0) {
 
                 listaEstoque[0].push(codigoTratado);
                 listaEstoque[1].push(nomeTratado);
                 listaEstoque[2].push(estoque);
+                listaEstoque[3].push(precoAleatorio);
 
                 div_mensagem.innerHTML = `Produto cadastrado com sucesso`
 
@@ -59,8 +66,10 @@
                 console.log(codigoTratado, nomeTratado, estoque);
 
                 if (listaEstoque[0].indexOf(codigoTratado) >= 1 && listaEstoque[1].indexOf(nomeTratado) >= 1) {
-                    console.log(listaEstoque[0].indexOf);
-                    listaEstoque[2].push(estoque);
+                    console.log(listaEstoque[2].indexOf);
+                    var ultimoValorLista = listaEstoque[2].length - 1
+
+                    listaEstoque[2][ultimoValorLista].push(estoque);
 
                     div_mensagem.innerHTML = `O produto de código ${produto} teve 
                         sua quantidade aumentada.`
@@ -69,6 +78,9 @@
                     listaEstoque[0].push(codigoTratado);
                     listaEstoque[1].push(nomeTratado);
                     listaEstoque[2].push(estoque);
+                    listaEstoque[3].push(precoAleatorio);
+
+
 
                     div_mensagem.innerHTML = `Produto cadastrado com sucesso`
                 }
@@ -80,10 +92,11 @@
 
     function ver() {
         for (var i = 0; i < listaEstoque[0].length; i++) {
-            div_mensagem.innerHTML += `<h3>Produto Nº${i}</h3>
+            div_mensagem.innerHTML += `<h3>Produto Nº${i + 1}</h3>
             Código do Produto: ${listaEstoque[0][i]} <br>
-            Nome do Produto: ${listaEstoque[0][i]} <br>
-            Estoque: ${listaEstoque[0][i]} <br>
+            Nome do Produto: ${listaEstoque[1][i]} <br>
+            Estoque: ${listaEstoque[2][i]} <br>
+            Preço: R$${listaEstoque[3][i]}
             `
         }
     }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interestelar</title>
+</head>
+
+<body>
+    <div>
+        Nome do astronauta; <br>
+        <input type="text" id="input_nome"> <br>
+        Nome do planeta; <br>
+        <input type="text" id="input_planeta"> <br>
+        Tempo relativo no planeta: <br>
+        <input type="number" id="input_tempoRelativo"> <br>
+        Quantidade de dias; <br>
+        <input type="number" id="input_qtDias"> <br>
+        Quantidade de horas; <br>
+        <input type="number" id="input_horas"> <br>
+        Quantidade de minutos; <br>
+        <input type="number" id="input_minutos"> <br>
+
+        <button onclick="registrar()">Registrar viagem</button> <br><br>
+
+        <button onclick="relatorio()">Relatório de viagens"</button>
+
+
+
+    </div>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+
+
+    var totalMinutosPlaneta = 0;
+    var totalMinutosTerra = 0;
+
+    var viagens = [
+        [], // Nome do astronauta
+        [], // Nome do planeta
+        [], // Idade da criança que nasceu quando ele viajou
+        [], // Total minutos no planeta da viagem
+        []  // Total minutos passados no planeta terra
+    ]
+
+
+    function registrar() {
+        var nome = input_nome.value.trim();
+        var nomePlaneta = input_planeta.value.trim();
+
+        var tempoRelativo = Number(input_tempoRelativo.value);
+        var qtDias = Number(input_qtDias.value);
+        var horas = Number(input_horas.value);
+        var minutos = Number(input_minutos.value);
+
+        if (nome == '' || nomePlaneta == '' || tempoRelativo <= 0 || (qtDias <= 0 && horas <= 0 && minutos <= 0)) {
+            alert('Preencha os campos corretamente e informe um tempo de viagem válido')
+
+        } else {
+            var qtDias_Minutos = qtDias * 1440;
+            var horas_minutos = horas * 60;
+
+            totalMinutosPlaneta = (minutos + qtDias_Minutos + horas_minutos) * tempoRelativo;
+
+            totalMinutosTerra = minutos + qtDias_Minutos + horas_minutos;
+
+            var idadeCrianca = 525600 / totalMinutosPlaneta ;
+
+            viagens[0].push(nome);
+            viagens[1].push(nomePlaneta);
+            viagens[2].push(idadeCrianca);
+            viagens[3].push(totalMinutosPlaneta);
+            viagens[4].push(totalMinutosTerra);
+
+
+
+            console.log('Cadastrado com sucesso.')
+            console.log(viagens)
+
+        }
+    }
+
+    function relatorio() {
+
+        var mensagem = '';
+        
+        // 0  - 13 // 13 - 30 // 30 - 65 // 65 - 100 // > 100
+        for (var i = 0; i < viagens[0].length; i++) {
+            var anosTerra = 525600 / viagens[4][i];
+
+            mensagem += `Viagem ${i + 1} <br> <br>`
+
+            if (anosTerra > 0 && anosTerra < 13) {
+                mensagem += `Astronauta ${viagens[0][i]} viajou para o planeta ${viagens[1][i]} e ficou fora pelo menos ${anosTerra.toFixed()} anos no tempo da terra. <br> A criança que nasceu quando ele saiu provavelmente está assim: nenem <img src="blobid7.png" alt=""> <br> <br>`;
+
+            } else if (anosTerra < 30) {
+                mensagem += `Astronauta ${viagens[0][i]} viajou para o planeta ${viagens[1][i]} e ficou fora pelo menos ${anosTerra.toFixed()} anos no tempo da terra. <br> A criança que nasceu quando ele saiu provavelmente está assim: jovem <img src="blobid8.png" alt=""> <br> <br>`;
+
+            } else if (anosTerra < 65) {
+                mensagem += `Astronauta ${viagens[0][i]} viajou para o planeta ${viagens[1][i]} e ficou fora pelo menos ${anosTerra.toFixed()} anos no tempo da terra. <br> A criança que nasceu quando ele saiu provavelmente está assim: adulto <img src="blobid9.png" alt=""> <br> <br>`
+
+            } else if (anosTerra < 100) {
+                mensagem += `Astronauta ${viagens[0][i]} viajou para o planeta ${viagens[1][i]} e ficou fora pelo menos ${anosTerra.toFixed()} anos no tempo da terra. <br> A criança que nasceu quando ele saiu provavelmente está assim: idoso <img src="blobid10.png" alt=""> <br> <br>`
+
+
+            } else if (anosTerra >= 100) {
+                mensagem += `Astronauta ${viagens[0][i]} viajou para o planeta ${viagens[1][i]} e ficou fora pelo menos ${anosTerra.toFixed()} anos no tempo da terra. <br> A criança que nasceu quando ele saiu provavelmente está assim: imortal <img src="blobid11.png" alt=""> <br> <br>`;
+
+            }
+
+        }
+
+        div_mensagem.innerHTML += `${mensagem} <br>`
+
+    }
+
+    // minutos x dias + minutos x horas + minutos
+    // 1 dia tem 1440 minutos
+</script>

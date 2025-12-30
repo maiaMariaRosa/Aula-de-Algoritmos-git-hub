@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricky and Morty - Personagens</title>
+</head>
+
+<body>
+    <div>
+        <h2>Ricky and Morty Personagens</h2>
+    </div>
+
+    <h4>Nome:</h4>
+    <input type="text" id="input_nome"> <br>
+    <h4>Status:</h4>
+    <input type="text" id="input_status"> <br>
+    <h4>Espécie:</h4>
+    <input type="text" id="input_especie"> <br>
+    <h4>Foto:</h4>
+    <input type="text" id="input_foto"> <br>
+
+    <button onclick="ver()">Ver Personagens</button>
+
+
+
+</body>
+
+</html>
+<script>
+
+    function ver() {
+        // name status species image
+
+        fetch('https://rickandmortyapi.com/api/character').then(function (resposta) {
+
+            resposta.json()
+                .then(function (dados) {
+
+                    
+                    input_nome.value += dados.results.name;
+                    input_status.value += dados.results.status; 
+                    input_especie.value +=  dados.results.species;
+                    input_foto.value += dados.results.image;
+
+                    console.log(dados.results);
+
+                })
+
+        })
+            .catch(function (erro) {
+                console.log('Erro na requisição', erro)
+            })
+
+    }
+
+</script>

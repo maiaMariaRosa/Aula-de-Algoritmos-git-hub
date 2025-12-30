@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+
+<body>
+    Nome: <br>
+    <input type="text" id="input_nome"> <br>
+    idade: <br>
+    <input type="text" id="input_idade"> <br>
+    <button onclick="exibir()">Exibir</button>
+    <div id="div_mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+    function exibir() {
+        var nome = input_nome.value;
+        var idade = Number(input_idade.value);
+
+        // JSON - Java Script Object Notation
+        // Notação de Objetos JavaScript
+        // Notação - ato de notar, de representar algo por meio de simbolos e caracteres. 
+         
+        div_mensagem.innerHTML = `
+        Nome: ${nome} <br>
+        Idade: ${idade}`
+
+    }
+
+
+</script>

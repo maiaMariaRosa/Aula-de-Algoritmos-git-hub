@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista JSON</title>
+</head>
+
+<body>
+    Nome: <br>
+    <input type="text" id="ipt_nome"> <br>
+    Telefone: <br>
+    <input type="text" id="ipt_tel"> <br>
+
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="exibir()">Exibir</button>
+    <br><br>
+
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    var contatos = [];
+
+    function cadastrar(){
+        var nome = ipt_nome.value;
+        var telefone = ipt_tel.value;
+        
+        if (nome != '' && telefone != ''){
+
+            var json = {
+                nome,
+                telefone
+            }
+
+            contatos.push(json)
+            console.log(JSON.stringify(contatos))
+
+        } else {
+            alert('Preencha todas informações para cadastro do contato!')
+        }
+    }
+
+    function exibir(){
+        var mensagem = '';
+
+        for (var i = 0; i < contatos.length; i++){
+            var contatoAtual = contatos[i];
+            var nomeAtual = contatoAtual.nome;
+            var telefoneAtual = contatoAtual.telefone;
+
+            mensagem += `${nomeAtual} - ${telefoneAtual} <br>`
+        }
+
+        div_msg.innerHTML = mensagem
+    }
+</script>

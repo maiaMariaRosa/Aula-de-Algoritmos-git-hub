@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medidas</title>
+</head>
+<style>
+    .infosCaixa {
+        display: flex;
+        flex-direction: column;
+        border: solid black 2px;
+        border-radius: 10px;
+        padding: 2%;
+        width: 30%;
+
+    }
+
+    .infosProduto {
+        display: flex;
+        flex-direction: column;
+        border: solid black 2px;
+        border-radius: 10px;
+        padding: 2%;
+        width: 30%;
+
+    }
+
+    body {
+        padding: 1%;
+    }
+
+    .conteudo1 {
+        display: flex;
+        flex-direction: row;
+        gap: 2%;
+        justify-content: center;
+    }
+
+    button {
+        width: 50%;
+        margin-top: 2%;
+
+    }
+
+    .resultado {
+        display: flex;
+        flex-direction: column;
+        border: solid black 2px;
+        border-radius: 10px;
+        padding: 2%;
+        width: 30%;
+    }
+
+    .popUp {
+        display: flex;
+        border-radius: 10px;
+        border: solid black 2px;
+    }
+</style>
+
+<body>
+    <div class="popUp" style="display: none;">
+        <div id="caixaCadastrada">
+            <p>Caixa cadastrada com sucesso</p>
+        </div>
+
+        <div id="caixaErro" style="display: none;">
+            <p>Para cadastrar a caixa é necessário preencher todos os campos</p>
+        </div>
+    </div>
+
+    <div class="conteudo1">
+        <div class="infosCaixa">
+            Digite a altura da caixa:
+            <input type="text" id="input_altura_caixa"> <br>
+            Digite a largura da caixa:
+            <input type="text" id="input_largura_caixa"> <br>
+            Digite a profundidade da caixa:
+            <input type="text" id="input_profundidade_caixa"> <br>
+
+            <button onclick="cadastrarCaixa()">Cadastrar Caixa</button>
+        </div>
+
+        <div class="infosProduto">
+            Digite a altura do produto:
+            <input type="text" id="input_altura_produto"> <br>
+            Digite a largura do produto:
+            <input type="text" id="input_largura_produto"> <br>
+            Digite a profundidade do produto:
+            <input type="text" id="input_profundidade_produto"> <br>
+            Digite a quantidade de produtos que deseja por na caixa:
+            <input type="text" id="input_quantidade_produto"> <br>
+            <button onclick="cadastrarProduto()">Cadastrar Produto</button>
+
+            <div id="caixaCadastrada" style="display: none;">
+                <p>Caixa cadastrada com sucesso</p>
+            </div>
+
+            <div id="caixaErro" style="display: none;">
+                <p>Para cadastrar a caixa é necessário preencher todos os campos</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="resultado" id="resultado"></div>
+</body>
+
+</html>
+<script>
+
+    window.onload = calcular()
+
+    medidasCaixa = {};
+    medidasProduto = {};
+
+    var cadastroCaixaOk = false;
+    var cadastroProdutoOk = false;
+
+    var varQuantidadeProduto = 0;
+
+    function cadastrarCaixa() {
+        // variáveis com as medidas da caixa
+        var varAlturaCaixa = Number(input_altura_caixa.value);
+        var varLarguraCaixa = Number(input_largura_caixa.value);
+        var varProfundidadeCaixa = Number(input_profundidade_caixa.value);
+
+        AlturaCaixaNan = isNaN(varAlturaCaixa)
+        LarguraCaixaNan = isNaN(varLarguraCaixa)
+        ProfundidadeCaixaNan = isNaN(varProfundidadeCaixa)
+
+        if (varAlturaCaixa > 0 &&
+            varLarguraCaixa > 0 &&
+            varProfundidadeCaixa > 0 &&
+            AlturaCaixaNan == false &&
+            LarguraCaixaNan == false &&
+            ProfundidadeCaixaNan == false
+        ) {
+            medidasCaixa = {
+                alturaCaixa: varAlturaCaixa,
+                larguraCaixa: varLarguraCaixa,
+                profundidadeCaixa: varProfundidadeCaixa
+            };
+
+            console.log('Medidas da caixa: ' + medidasCaixa.alturaCaixa, medidasCaixa.larguraCaixa, medidasCaixa.profundidadeCaixa);
+
+            var caixaCadastrada = document.getElementById('caixaCadastrada');
+            var caixaErro = document.getElementById('caixaErro');
+
+            console.log('cadastrado com sucesso')
+
+            cadastroCaixaOk = true;
+            /*setTimeout(() =>
+                caixaCadastrada.style.display = "block", 1000);
+
+            setTimeout(sumirPopup(), 2000);
+            */
+        } else {
+
+            console.log('erro ao cadastrar medidas da caixa')
+            /*setTimeout(() =>
+                caixaErro.style.display = "block", 1000);
+
+            setTimeout(sumirPopup(), 2000);
+            */
+        }
+    }
+
+    function cadastrarProduto() {
+        // variáveis com as medidas da caixa
+        var varAlturaProduto = Number(input_altura_produto.value);
+        var varLarguraProduto = Number(input_largura_produto.value);
+        var varProfundidadeProduto = Number(input_profundidade_produto.value);
+        varQuantidadeProduto = Number(input_quantidade_produto.value);
+
+        AlturaProdutoNan = isNaN(varAlturaProduto)
+        LarguraProdutoNan = isNaN(varLarguraProduto)
+        ProfundidadeProdutoNan = isNaN(varProfundidadeProduto)
+        QuantidadeProdutoNan = isNaN(varQuantidadeProduto)
+
+        if (varAlturaProduto > 0 &&
+            varLarguraProduto > 0 &&
+            varProfundidadeProduto > 0 &&
+            varQuantidadeProduto > 0 &&
+            AlturaProdutoNan == false &&
+            LarguraProdutoNan == false &&
+            ProfundidadeProdutoNan == false
+        ) {
+            medidasProduto = {
+                alturaProduto: varAlturaProduto,
+                larguraProduto: varLarguraProduto,
+                profundidadeProduto: varProfundidadeProduto
+            };
+
+            console.log('Medidas do produto: ' + medidasProduto.alturaProduto, medidasProduto.larguraProduto, medidasProduto.profundidadeProduto);
+
+            var caixaCadastrada = document.getElementById('caixaCadastrada');
+            var caixaErro = document.getElementById('caixaErro');
+
+            console.log('cadastrado com sucesso')
+
+            cadastroProdutoOk = true;
+            /*setTimeout(() =>
+                caixaCadastrada.style.display = "block", 1000);
+
+            setTimeout(sumirPopup(), 2000);
+            */
+        } else {
+
+            console.log('erro ao cadastrar medidas da caixa')
+            /*setTimeout(() =>
+                caixaErro.style.display = "block", 1000);
+
+            setTimeout(sumirPopup(), 2000);
+            */
+        }
+    }
+
+    var resultado;
+
+    var larguraOk = false;
+    var profundidadeOk = false;
+    var alturaOk = false;
+
+    var qtVezesCabeLargura = 0;
+    var qtVezesCabeAltura = 0;
+    var qtVezesCabeProfundidade = 0;
+
+
+    function calcular() {
+
+        if (cadastroCaixaOk == true && cadastroProdutoOk == true) {
+
+            if (medidasProduto.alturaProduto < medidasCaixa.alturaCaixa &&
+                medidasProduto.larguraProduto < medidasCaixa.larguraCaixa &&
+                medidasProduto.profundidadeProduto < medidasCaixa.profundidadeCaixa
+            ) {
+                // calculo do produto sendo colocado em pé 
+                var largura = medidasProduto.larguraProduto % medidasCaixa.larguraCaixa;
+                var altura = medidasProduto.alturaProduto % medidasCaixa.alturaCaixa;
+                var profundidade = medidasProduto.profundidadeProduto % medidasProduto.profundidadeProduto;
+                var acimaLargura = medidasProduto.larguraProduto % medidasCaixa.larguraCaixa;
+                var acimaProfundidade = medidasProduto.profundidadeProduto % medidasCaixa.profundidadeCaixa;
+
+                if (largura == 0) {
+                    larguraOk = true;
+                    qtVezesCabeLargura = medidasProduto.larguraProduto / medidasCaixa.larguraCaixa;
+                }
+
+                if (altura == 0) {
+                    alturaOk = true;
+                    qtVezesCabeAltura = medidasProduto.alturaProduto / medidasCaixa.alturaCaixa;
+                }
+
+                if (profundidade == 0) {
+                    profundidadeOk = true;
+                    qtVezesCabeProfundidade = medidasProduto.profundidadeProduto / medidasProduto.profundidadeProduto;
+                }
+
+                var qtCabeNaCaixa = qtVezesCabeLargura * qtVezesCabeProfundidade;
+
+                if (varQuantidadeProduto < qtCabeNaCaixa) {
+                    console.log('A caixa comporta a quantidade de produtos informada')
+                } else {
+                    console.log('A caixa não comporta a quantidade de produtos informada')
+                }
+
+                {
+                    // calculo do produto sendo colocado deitado
+                    var largura = medidasProduto.alturaProduto % medidasCaixa.larguraCaixa;
+                    var altura = medidasProduto.larguraProduto % medidasCaixa.alturaCaixa;
+                    var profundidade = medidasProduto.profundidadeProduto % medidasProduto.profundidadeProduto;
+                    var acimaLargura = medidasProduto.alturaProduto % medidasCaixa.larguraCaixa;
+                    var acimaProfundidade = medidasProduto.profundidadeProduto % medidasCaixa.profundidadeCaixa;
+
+                    if (largura == 0) {
+                        larguraOk = true;
+                        qtVezesCabeLargura = medidasProduto.larguraProduto / medidasCaixa.larguraCaixa;
+                    }
+
+                    if (altura == 0) {
+                        alturaOk = true;
+                        qtVezesCabeAltura = medidasProduto.alturaProduto / medidasCaixa.alturaCaixa;
+                    }
+
+                    if (profundidade == 0) {
+                        profundidadeOk = true;
+                        qtVezesCabeProfundidade = medidasProduto.profundidadeProduto / medidasProduto.profundidadeProduto;
+                    }
+
+
+                }
+            }
+
+        }
+
+    }
+
+    /*
+    sumirPopup() {
+        caixaCadastrada.style.display = "none";
+        caixaErro.style.display = "none";
+    }*/
+</script>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricky and Morty - Personagens</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="silkscreen-regular, imgFundo">
+    <div class="conteudo">
+        <div class="listagem">
+            <div>
+                <h2>Ricky and Morty Personagens</h2>
+            </div>
+            <div>
+                <h4>Lista de Personagens</h4>
+                <div id="div_listaPersonagens"></div>
+            </div>
+        </div>
+        <div>
+            <div>
+                Qual personagem você quer pesquisar? <br>
+                <input type="text" id="input_personagem"> <br>
+            </div>
+
+            <div class="pesquisa" id="div_name"> </div><br>
+
+            <button onclick="ver()">VER PERSONAGENS</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    var listaDados = [];
+
+    window.onload = (
+        pesquisar(),
+        exibirLista()
+    )
+
+    function pesquisar() {
+
+        fetch('https://rickandmortyapi.com/api/character').then(function (resposta) {
+
+            resposta.json()
+                .then(function (dados) {
+                    listaDados = dados.results
+                    console.log(dados.results);
+                    console.log(listaDados);
+
+                })
+
+
+        })
+            .catch(function (erro) {
+                console.log('Erro na requisição', erro)
+            })
+    }
+
+    function exibirLista() {
+        var mensagem = '';
+
+        for (var i = 0; listaDados.length; i++) {
+            mensagem += `<h4>${i + 1}<h/4> - ${listaDados[i].name}`
+        }
+
+        div_listaPersonagens.innerHTML = mensagem;
+    }
+
+    function ver() {
+        var nomePersonagem = input_personagem.value.trim();
+        var nome = '';
+        var status = '';
+        var species = '';
+        var img = '';
+
+
+        for (var i = 0; i < listaDados.length; i++) {
+            if (listaDados[i].name == nomePersonagem) {
+                nome = listaDados[i].name;
+                status = listaDados[i].status;
+                species = listaDados[i].species;
+                img = listaDados[i].image;
+            }
+        }
+
+
+        div_name.innerHTML = `<h4>Nome:</h4> ${nome} <br>
+                              <h4>Status:</h4> ${status} <br>
+                              <h4>Especie:</h4> ${species} <br> 
+                              <h4>Foto:</h4> <img src="${img}" alt="">`;
+
+    }
+</script>
+
+<style>
+    .silkscreen-regular {
+        font-family: "Silkscreen", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .silkscreen-bold {
+        font-family: "Silkscreen", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    body {
+        padding: 5%;
+        background-color: #111440;
+
+    }
+
+    .conteudo {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        color: #82BF45;
+        
+    }
+
+    button {
+        all: unset;
+        cursor: pointer;
+        background-color: #82BF45;
+        color: #111440;
+        border-radius: 10px;
+        width: 40%;
+        height: auto;
+        text-align: center;
+    }
+
+    #input_personagem {
+        all: unset;
+        background-color: white;
+        color: #111440;
+        border-radius: 10px;
+    }
+
+    .pesquisa {
+        background-color: #F2DD72;
+        border-radius: 10px;
+        padding: 6%;
+        color: #111440;
+        gap: 4%;
+    }
+</style>

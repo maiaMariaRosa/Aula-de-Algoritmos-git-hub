@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricky and Morty - Personagens</title>
+</head>
+
+<body>
+    <div>
+        <h2>Ricky and Morty Personagens</h2>
+    </div>
+    <div>
+        Qual personagem você quer pesquisar?
+        <input type="text" id="input_personagem"> <br>
+    </div>
+
+    <h4>Nome:</h4>
+    <div id="div_name"> <br>
+        <h4>Status:</h4>
+        <div id="div_status"> <br>
+            <h4>Espécie:</h4>
+            <div id="div_specie"> <br>
+                <h4>Foto:</h4>
+                <div id="div_img"> <br>
+
+                    <button onclick="ver()">Ver Personagens</button>
+
+
+</body>
+
+</html>
+<script>
+    var listaDados = [];
+    window.onload(
+        pesquisar()
+    )
+
+    function pesquisar() {
+        // name status species image
+
+        fetch('https://rickandmortyapi.com/api/character').then(function (resposta) {
+
+            resposta.json()
+                .then(function (dados) {
+                    // nome = dados.results.name;
+                    // status = dados.results.status;
+                    // species = dados.results.species;
+                    // img = dados.results.image;
+                    // id = dados.results.id;
+
+                    listaDados.push(dados.results);
+
+                    console.log(dados.results);
+                    console.log(listaDados)
+                })
+
+        })
+            .catch(function (erro) {
+                console.log('Erro na requisição', erro)
+            })
+
+    }
+
+    function ver() {
+        var nomePersonagem = input_personagem.value.trim();
+        var nome = '';
+        var status = '';
+        var species = '';
+        var img = '';
+        var id = '';
+
+        for (var i = 0; i < listaDados[0].name; i++) {
+            if (listaDados[0].name == nomePersonagem) {
+                nome = listaDados[0].name;
+                status = listaDados[0].status;
+                species = listaDados[0].species;
+                img - listaDados[0].img;
+            }
+        }
+
+        div_name.innerHTML = nome;
+        div_status.innerHTML = status;
+        div_specie.innerHTML = species;
+        div_img.innerHTML = img;
+    }
+</script>

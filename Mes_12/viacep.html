@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEP</title>
+</head>
+
+<body>
+    CEP:
+    <input oninput="buscarCep()" maxlength="8" type="text" id="input_cep"> <br>
+    Logradouro:
+    <input disabled type="text" id="input_logradouro"> <br>
+    Bairro:
+    <input disabled type="text" id="input_bairro"> <br>
+    Cidade:
+    <input disabled type="text" id="input_cidade"> <br>
+    UF:
+    <input disabled type="text" id="input_uf"> <br>
+    Estado:
+    <input disabled type="text" id="input_estado"> <br>
+
+</body>
+
+</html>
+
+<script>
+    function buscarCep() {
+        var cep = input_cep.value;
+
+        if (cep.length == 8) {
+            console.log(cep);
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`
+
+            ).then(function (resposta) { // Aqui dentro do parâmetro temos a resposta da requisição
+                // Método que será executado assim que minha 'promessa' for concluída, aqui é recebido minha *resposta* correta. 
+
+                console.log('Resposta: ', resposta); 
+
+                resposta.json() // Aqui pegamos a resposta e tranformamos em um Objeto JSON
+                    .then(function (dados) {
+                        console.log('Dados: ', dados);
+
+                        input_logradouro.value = dados.logradouro;
+                        input_bairro.value = dados.bairro;
+                        input_cidade.value = dados.localidade;
+                        input_uf.value = dados.uf;
+                        input_estado.value = dados.estado;
+                    })
+
+            }).catch(function (erro) { // Executar minha função de erro, o callback
+                console.log('Erro ocorrido: ', erro);
+
+        })
+
+    }
+}
+
+    // CALLBACK - Função passada para outra função
+</script>

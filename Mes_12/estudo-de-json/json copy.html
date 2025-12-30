@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+
+<body>
+    Nome: <br>
+    <input type="text" id="input_nome"> <br>
+    idade: <br>
+    <input type="text" id="input_idade"> <br>
+    <button onclick="exibir()">Exibir</button>
+    <div id="div_mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+    function exibir() {
+
+        var usuario = {
+            // Atributos // Valores
+            nome: input_nome.value,
+            idade: input_idade.value
+        }
+
+        usuario.tipo = 'COMUM'; // Criando uma informação
+        usuario.nome = usuario.nome.toUpperCase(); // Atribuindo
+
+        console.log(usuario)
+        // JSON - Java Script Object Notation
+        // Notação de Objetos JavaScript
+        // Notação - ato de notar, de representar algo por meio de simbolos e caracteres. 
+        div_mensagem.innerHTML += `
+        Objeto: ${usuario} <br>
+        Usuario: ${JSON.stringify(usuario)} <br><br>`
+
+        // Para acessar o JSON completo passamos para ele para um formato de string, ele converte tanto os atributos quanto os valores para string;
+
+        // Remover uma informação do JSON
+        delete usuario.tipo; 
+
+        div_mensagem.innerHTML += `
+        Informações: <br>
+        Nome: ${usuario.nome} <br>
+        Idade: ${usuario.idade} <br>
+        Tipo: ${usuario.tipo}` 
+
+        // for in e for off para trabalhar como json como vetor, percorrendo como lista
+
+    }
+
+
+</script>
